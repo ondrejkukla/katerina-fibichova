@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>psychø — Kateřina Fibichová</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --pink:        #FF3D9A;
+      --pink-light:  #FDF0F5;
+      --cream:       #FDF4F0;
+      --text-dark:   #2a1a20;
+      --text-mid:    #4a3040;
+      --text-muted:  #9a7080;
+      --text-rose:   #7a5a65;
+      --text-plum:   #6a3a55;
+      --border:      rgba(255, 100, 160, 0.12);
+      --font-serif:  'Nunito', serif;
+      --font-sans:   'Inter', sans-serif;
+      --radius-pill: 999px;
+      --radius-card: 20px;
+      --radius-sm:   16px;
+
+      --max-width: 1440px;
+      --section-padding: 80px;
+      --section-padding-tablet: 40px;
+      --section-padding-mobile: 60px;
+    }
+
+    /* ─── BASE ─── */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      background: #fff;
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── TYPOGRAPHY HELPERS ─── */
+    .serif {
+      font-family: var(--font-serif);
+    }
+
+    /* ─── SECTION INNER CONTAINER ─── */
+    .section-inner {
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section {
+      padding: 6rem 2.5rem;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--pink);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 300;
+      color: var(--pink);
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-outline {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--pink);
+      background: transparent;
+      border: 1.5px solid var(--pink);
+      border-radius: var(--radius-pill);
+      padding: 13px 36px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--pink);
+      color: #fff;
+    }
+
+    /* ─── AVAILABILITY BANNER ─── */
+    #banner {
+      background: var(--pink);
+      color: #fff;
+      text-align: center;
+      padding: 10px 1rem;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      position: relative;
+      z-index: 100;
+    }
+
+    #banner a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* ─── STICKY NAV ─── */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      background: rgba(253, 244, 240, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      height: 60px;
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-dark);
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+      text-decoration: none;
+    }
+
+    .nav-middle {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-rose);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--pink);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--pink);
+      border: 1.5px solid var(--pink);
+      border-radius: var(--radius-pill);
+      padding: 7px 20px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--pink);
+      color: #fff;
+    }
+
+    .nav-lang {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      cursor: pointer;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.045;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(64px, 12vw, 110px);
+      font-weight: 300;
+      color: #fff;
+      line-height: 0.95;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      border-radius: var(--radius-pill);
+      padding: 12px 32px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: rgba(255, 255, 255, 0.28);
+      border-color: #fff;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      animation: bounce 2s ease-in-out infinite;
+      background: none;
+      border: none;
+    }
+
+    .hero-scroll:hover {
+      opacity: 1;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(7px); }
+    }
+
+    /* ─── SERVICES ─── */
+    #sluzby {
+      background: var(--cream);
+
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 3rem;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .service-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+
+    .service-body {
+      padding: 1.5rem 1.75rem 2rem;
+    }
+
+    .service-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-rose);
+      line-height: 1.7;
+    }
+
+    .services-cta {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ─── ABOUT ─── */
+    #omne {
+      background: #fff;
+    }
+
+    .omne-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    .omne-bio {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .omne-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--pink);
+      background: var(--pink-light);
+      border-radius: var(--radius-pill);
+      padding: 5px 14px;
+    }
+
+    .omne-photo {
+      width: 80%;
+      aspect-ratio: 3 / 4;
+      border-radius: 999px 999px 60% 60%;
+      background: linear-gradient(160deg, #F9D0E8, #D8A0E0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .omne-photo-label {
+      position: absolute;
+      bottom: 1.5rem;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── STATS ─── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+    }
+
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 300;
+      color: var(--pink);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ─── QUALIFICATIONS ─── */
+    .kvalif-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 300;
+      color: var(--text-dark);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .kvalif-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .kvalif-col-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--pink);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .kvalif-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .kvalif-list li {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.5;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .kvalif-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--pink);
+      opacity: 0.4;
+    }
+
+    /* ─── MEDIA & TESTIMONIALS ─── */
+    #reference {
+      background: var(--cream);
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 4rem;
+    }
+
+    .media-card {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.15s;
+    }
+
+    .media-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .media-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .media-thumb img,
+    .media-thumb svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-source-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: var(--radius-pill);
+      padding: 3px 10px;
+    }
+
+    .media-body {
+      padding: 1rem 1.25rem 1.25rem;
+    }
+
+    .media-title {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    .ref-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .cit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .cit-card {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cit-mark {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--pink);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: -16px;
+    }
+
+    .cit-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    .cit-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .cit-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F9D0E8, #D8A0E0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 400;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .cit-name {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    /* ─── FAQ ─── */
+    #faq {
+      background: #fff;
+    }
+
+    .faq-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .faq-item:hover,
+    .faq-item.open {
+      background: var(--cream);
+    }
+
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.4rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .faq-q {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-plum);
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+
+    .faq-item:hover .faq-q,
+    .faq-item.open .faq-q {
+      color: var(--pink);
+    }
+
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 61, 154, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .faq-icon svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--pink);
+      border-color: var(--pink);
+    }
+
+    .faq-item.open .faq-icon svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-item.open .faq-icon svg path {
+      stroke: #fff;
+    }
+
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-answer > p {
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .faq-item.open .faq-answer {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-answer p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+      padding: 0 1rem 1.4rem;
+    }
+
+    /* ─── PRICING ─── */
+    #cenik {
+      background: var(--cream);
+    }
+
+    .cenik-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 2rem;
+    }
+
+    .cenik-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      padding: 2rem 1.75rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cenik-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .cenik-name {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.3;
+    }
+
+    .cenik-duration {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: -0.5rem;
+    }
+
+    .cenik-price {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .price-num {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--pink);
+      line-height: 1;
+    }
+
+    .price-unit {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+    }
+
+    /* Muted variant for "dle domluvy" card */
+    .cenik-card.muted .price-num {
+      font-size: 20px;
+      color: var(--text-muted);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .note-box {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 1.5rem 1.75rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .note-title {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--pink);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .note-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .note-highlight {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-plum);
+    }
+
+    .pojistovny-box {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 16px;
+    }
+
+    .pojistovny-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .pojistovny-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 55ch;
+    }
+
+    .pojistovny-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .p-pill {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--pink);
+      background: var(--pink-light);
+      border-radius: var(--radius-pill);
+      padding: 5px 14px;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .p-pill:hover {
+      background: var(--pink);
+      color: #fff;
+    }
+
+    /* ─── CONTACT ─── */
+    #kontakt {
+      background: var(--cream);
+    }
+
+    .kontakt-heading-wrap {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .kontakt-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 300;
+      color: var(--text-dark);
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+
+    .kontakt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* Contact form */
+    .form-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      padding: 2rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-mid);
+      background: var(--cream);
+      border: 1px solid rgba(255, 100, 160, 0.15);
+      border-radius: 10px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      appearance: none;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(255, 61, 154, 0.4);
+    }
+
+    .field textarea {
+      resize: none;
+      height: 110px;
+    }
+
+    .select-wrap {
+      position: relative;
+    }
+
+    /* Custom dropdown arrow */
+    .select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid var(--text-muted);
+      pointer-events: none;
+    }
+
+    .submit-btn {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: var(--text-dark);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 14px;
+      width: 100%;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: var(--pink);
+    }
+
+    /* Contact right column */
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-card {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .info-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--pink-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .info-card-title {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-dark);
+    }
+
+    .info-card-text {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Map placeholder */
+    .map-card {
+      background: #e8dde0;
+      border-radius: var(--radius-sm);
+      height: 160px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .map-card svg.map-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+    }
+
+    .map-btn {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--text-dark);
+      background: #fff;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .map-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Social & booking row */
+    .bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.25rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid rgba(255, 100, 160, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      border-color: var(--pink);
+    }
+
+    .social-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .reservio-btn {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: #fff;
+      background: var(--pink);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 10px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .reservio-btn:hover {
+      background: #e0307f;
+    }
+
+    .reservio-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2.5rem;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* ─── BACK TO TOP ─── */
+    #backToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 50;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid rgba(255, 100, 160, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s, border-color 0.2s;
+      box-shadow: 0 2px 12px rgba(255, 61, 154, 0.1);
+    }
+
+    #backToTop.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #backToTop:hover {
+      border-color: var(--pink);
+    }
+
+    #backToTop svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      #nav {
+        padding: 0 1.5rem;
+      }
+
+      footer {
+        padding: 1.5rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .omne-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .omne-photo {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+
+      .stats-row,
+      .kvalif-grid,
+      .kontakt-grid,
+      .info-grid,
+      .info-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANNER -->
+  <div id="banner">
+    Aktuálně přijímám nové klienty — <a href="#kontakt">objednejte se →</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo"> ø</a>
+      <ul class="nav-links nav-middle">
+        <li><a href="#omne">o mně</a></li>
+        <li><a href="#sluzby">služby</a></li>
+        <li><a href="#faq">F&Qs</a></li>
+        <li><a href="#cenik">ceník</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#kontakt" class="nav-cta">chci se objednat</a>
+<!--         <span class="nav-lang">CZ | EN</span> -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <canvas id="heroCanvas"></canvas>
+    <svg class="hero-grain" xmlns="http://www.w3.org/2000/svg">
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)"/>
+    </svg>
+    <div class="hero-content">
+      <h1 class="hero-title">Ahøj,<br>jsem<br>Kateřina</h1>
+      <p class="hero-subtitle">psycholog a psychoterapeut</p>
+      <a href="#kontakt" class="hero-cta">chci se objednat</a>
+    </div>
+    <button class="hero-scroll" onclick="document.getElementById('sluzby').scrollIntoView({behavior:'smooth'})" aria-label="Přejít na služby">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 9L12 15L18 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="sluzby">
+    <div class="section-inner">
+    <h2 class="section-heading">Cø nabízím</h2>
+    <p class="section-sub">Individuálně, v páru, online i osobně</p>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <svg class="service-img" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="sg1" cx="50%" cy="50%" r="70%">
+              <stop offset="0%" stop-color="#F9D0E8"/>
+              <stop offset="100%" stop-color="#E8A8CC"/>
+            </radialGradient>
+          </defs>
+          <rect width="320" height="240" fill="url(#sg1)"/>
+          <ellipse cx="160" cy="130" rx="80" ry="70" fill="rgba(255,255,255,0.25)"/>
+          <!-- Left speech bubble -->
+          <rect x="80" y="80" width="70" height="50" rx="14" fill="white" opacity="0.9"/>
+          <polygon points="90,130 80,148 106,130" fill="white" opacity="0.9"/>
+          <circle cx="102" cy="105" r="5" fill="#FF3D9A"/>
+          <circle cx="115" cy="105" r="5" fill="#FF3D9A"/>
+          <circle cx="128" cy="105" r="5" fill="#FF3D9A"/>
+          <!-- Right speech bubble -->
+          <rect x="170" y="100" width="70" height="50" rx="14" fill="white" opacity="0.9"/>
+          <polygon points="220,150 230,168 204,150" fill="white" opacity="0.9"/>
+          <circle cx="192" cy="125" r="5" fill="#FF3D9A" opacity="0.5"/>
+          <circle cx="205" cy="125" r="5" fill="#FF3D9A" opacity="0.5"/>
+          <circle cx="218" cy="125" r="5" fill="#FF3D9A" opacity="0.5"/>
+        </svg>
+        <div class="service-body">
+          <h3 class="service-title">Individuální<br>poradenství</h3>
+          <p class="service-desc">Pro děti, dospívající i dospělé. Česky i anglicky. Osobně i online.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-img" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="sg2" cx="40%" cy="40%" r="70%">
+              <stop offset="0%" stop-color="#FAD0DC"/>
+              <stop offset="100%" stop-color="#F0A0B8"/>
+            </radialGradient>
+          </defs>
+          <rect width="320" height="240" fill="url(#sg2)"/>
+          <ellipse cx="160" cy="120" rx="90" ry="75" fill="rgba(255,255,255,0.2)"/>
+          <rect x="148" y="60" width="24" height="90" rx="12" fill="white" opacity="0.9"/>
+          <circle cx="160" cy="175" r="14" fill="white" opacity="0.9"/>
+          <circle cx="160" cy="112" r="55" fill="none" stroke="white" stroke-width="2" opacity="0.35"/>
+        </svg>
+        <div class="service-body">
+          <h3 class="service-title">Krizová<br>intervence</h3>
+          <p class="service-desc">Rychlá a funkční podpora v akutní krizi. Doba objednání do 24 hodin.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-img" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="sg3" cx="60%" cy="40%" r="70%">
+              <stop offset="0%" stop-color="#F5D0F0"/>
+              <stop offset="100%" stop-color="#D8A0E0"/>
+            </radialGradient>
+          </defs>
+          <rect width="320" height="240" fill="url(#sg3)"/>
+          <ellipse cx="160" cy="130" rx="85" ry="72" fill="rgba(255,255,255,0.2)"/>
+          <path d="M80 170 Q80 80 160 80 Q240 80 240 170" fill="none" stroke="white" stroke-width="18" stroke-linecap="round" opacity="0.9"/>
+          <path d="M100 170 Q100 102 160 102 Q220 102 220 170" fill="none" stroke="white" stroke-width="13" stroke-linecap="round" opacity="0.6"/>
+          <path d="M118 170 Q118 122 160 122 Q202 122 202 170" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" opacity="0.35"/>
+        </svg>
+        <div class="service-body">
+          <h3 class="service-title">Vzdělávání<br>a konzultace</h3>
+          <p class="service-desc">V oblasti duševního zdraví, školní psychologie a specifických poruch učení.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="services-cta">
+      <a href="#kontakt" class="btn-outline">odkaz na calendly</a>
+    </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="omne">
+    <div class="section-inner">
+    <div class="omne-top">
+      <div>
+        <p class="section-label">o mně</p>
+        <h2 class="section-heading">Kdø jsem?</h2>
+        <p class="omne-bio">Jsem Kateřina Fibichová — psycholožka, psychoterapeutka ve výcviku a kandidátní členka ČAP. Působím v centrech Elpira, Kind Place a SŠ Scio Holešovice. Provázím děti, dospívající i dospělé turbulentním obdobím a společně hledáme cesty vpřed.</p>
+        <div class="omne-tags">
+          <span class="tag">KBT výcvik</span>
+          <span class="tag">děti & dospívající</span>
+          <span class="tag">CZ & EN</span>
+          <span class="tag">online i osobně</span>
+        </div>
+      </div>
+      <div class="omne-photo" aria-hidden="true">
+        <svg width="60%" height="60%" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="35" r="20" fill="rgba(255,255,255,0.3)"/>
+          <ellipse cx="50" cy="80" rx="30" ry="22" fill="rgba(255,255,255,0.3)"/>
+        </svg>
+        <span class="omne-photo-label">foto</span>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">hodin<br>s klienty</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">hodin<br>vzdělávání</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">hodin individuální<br>terapie</div>
+      </div>
+    </div>
+
+    <h3 class="kvalif-heading">Cø mě kvalifikuje<br>prø práci terapeuta?</h3>
+    <div class="kvalif-grid">
+      <div>
+        <p class="kvalif-col-label">vzdělání</p>
+        <ul class="kvalif-list">
+          <li>Mgr. jednooborová psychologie, 2025</li>
+          <li>KBT výcvik — ODYSSEA, 5 let (3. ročník), certifikován ČPtS & ČAP</li>
+          <li>Psycholog ve zdravotnictví — IPVZ, 2025</li>
+          <li>Kandidátní členka České asociace pro psychoterapii</li>
+        </ul>
+      </div>
+      <div>
+        <p class="kvalif-col-label">praxe & kurzy</p>
+        <ul class="kvalif-list">
+          <li>Emoční první pomoc — Emotion Aid®, 30 h</li>
+          <li>Krizová intervence — PVŠPS, 36 h</li>
+          <li>Sebepoškozování u dětí a dospívajících, 8 h</li>
+          <li>Praxe: PN Bohnice, VFN, FN Motol, NÚDZ a další</li>
+          <li>Pracuji pod supervizí, navštěvuji vlastní terapii</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- MEDIA & TESTIMONIALS -->
+  <section id="reference">
+    <div class="section-inner">
+    <h2 class="section-heading">V médiích & reference</h2>
+
+    <p class="section-label">mediální výstupy</p>
+    <div class="media-grid">
+
+      <a class="media-card" href="#">
+        <div class="media-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="320" height="180" fill="#1a1a2e"/>
+            <rect x="20" y="20" width="60" height="28" rx="4" fill="#e63946"/>
+            <text x="50" y="39" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle">TN.cz</text>
+            <rect x="20" y="70" width="200" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
+            <rect x="20" y="86" width="160" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+          </svg>
+          <span class="media-source-badge">TN.cz</span>
+        </div>
+        <div class="media-body">
+          <p class="media-title">Děti s ADHD mohou být častěji naštvané a podrážděné</p>
+        </div>
+      </a>
+
+      <a class="media-card" href="#">
+        <div class="media-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="320" height="180" fill="#1b1b1b"/>
+            <rect x="20" y="20" width="90" height="28" rx="4" fill="#c8a951"/>
+            <text x="65" y="39" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#1b1b1b" text-anchor="middle">RESPEKT</text>
+            <rect x="20" y="70" width="200" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
+            <rect x="20" y="86" width="170" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+          </svg>
+          <span class="media-source-badge">Respekt</span>
+        </div>
+        <div class="media-body">
+          <p class="media-title">Odklad nástupu do první třídy? To bude vzácnost</p>
+        </div>
+      </a>
+
+      <a class="media-card" href="#">
+        <div class="media-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="320" height="180" fill="#0a1628"/>
+            <rect x="20" y="20" width="70" height="28" rx="4" fill="#ff6b00"/>
+            <text x="55" y="39" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">NOVA</text>
+            <rect x="20" y="70" width="200" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
+            <rect x="20" y="86" width="150" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+          </svg>
+          <span class="media-source-badge">Snídaně s Novou</span>
+        </div>
+        <div class="media-body">
+          <p class="media-title">Narůstá počet dětí s poruchou pozornosti?</p>
+        </div>
+      </a>
+
+    </div>
+
+    <hr class="ref-divider"/>
+
+    <p class="section-label">co říkají klienti</p>
+    <div class="cit-grid">
+
+      <div class="cit-card">
+        <div class="cit-mark" aria-hidden="true">"</div>
+        <p class="cit-text">Kateřina má úžasnou schopnost naslouchat bez hodnocení. Po prvním sezení jsem věděla, že jsem na správném místě.</p>
+        <div class="cit-author">
+          <div class="cit-avatar" aria-hidden="true">K.M.</div>
+          <span class="cit-name">K. M., 16 let</span>
+        </div>
+      </div>
+
+      <div class="cit-card">
+        <div class="cit-mark" aria-hidden="true">"</div>
+        <p class="cit-text">Konečně jsem pochopila, proč reaguji tak jak reaguji. Pomohla mi vidět věci jinak, bez tlaku a spěchu.</p>
+        <div class="cit-author">
+          <div class="cit-avatar" aria-hidden="true">T.N.</div>
+          <span class="cit-name">T. N., 14 let</span>
+        </div>
+      </div>
+
+      <div class="cit-card">
+        <div class="cit-mark" aria-hidden="true">"</div>
+        <p class="cit-text">Dcera se po pár sezeních otevřela způsobem, který jsem u ní dlouho neviděla. Jsme obě vděčné.</p>
+        <div class="cit-author">
+          <div class="cit-avatar" aria-hidden="true">L.H.</div>
+          <span class="cit-name">L. H., maminka</span>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-inner">
+    <h2 class="section-heading">Nejčastější øtázky</h2>
+    <p class="section-sub">Pár věcí, které si lidé nejčastěji říkají před prvním krokem</p>
+
+    <div class="faq-list" id="faqList">
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jsem na tom opravdu tak špatně?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>Tuhle otázku si klade většina lidí, kteří o terapii uvažují. Není velkého a malého problému — každý z nich stojí za pozornost. Pokud cítíte, že se trápíte, v něčem se opakovaně cyklíte nebo chcete věcem lépe porozumět, pak je pro vás terapie to pravé.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jak často mám chodit?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>Na začátku se obvykle setkáváme 1× týdně, aby měla práce kontinuitu. Frekvenci ale vždy přizpůsobujeme vaší situaci a možnostem.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jak dlouho to trvá?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>Jedno sezení trvá zpravidla 50 minut. Někdy stačí pár setkání k vyřešení konkrétního tématu, jindy jde o delší proces. Délka spolupráce se odvíjí od vašich potřeb a cílů.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">S jakými tématy mohu přijít?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>S takovými, která vám běží hlavou večer před spaním. Se vztahy, úzkostí, stresem, vyčerpáním, ADHD, OCD, poruchou příjmu potravy nebo jen s pocitem, že už takhle nechcete fungovat.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jak funguje KBT?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>Kognitivně-behaviorální terapie pracuje s propojením myšlenek, emocí a chování. Nejde jen o povídání — hledáme konkrétní způsoby, jak věci zkoušet jinak v běžném životě.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jde to online? A v angličtině?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>Ano k obojímu. Setkání probíhají osobně i online, v češtině i angličtině — záleží na tom, co vám lépe vyhovuje.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Spolupracujete s pojišťovnami?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>Aktuálně neposkytujeme péči hrazenou pojišťovnou. Služby jsou hrazeny soukromě. Více informací najdete v sekci ceník.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jak se objednat?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>Nejjednodušeji přes kontaktní formulář nebo přes rezervační systém Reservio. Ozvete se — domluví se zbytek.</p></div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="cenik">
+    <div class="section-inner">
+    <h2 class="section-heading">Ceník</h2>
+
+    <div class="cenik-grid">
+      <div class="cenik-card">
+        <div class="cenik-icon">💬</div>
+        <h3 class="cenik-name">Individuální poradenství</h3>
+        <p class="cenik-duration">50 minut</p>
+        <div class="cenik-price"><span class="price-num">1 500</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-icon">⚡</div>
+        <h3 class="cenik-name">Krizová intervence</h3>
+        <p class="cenik-duration">50 minut</p>
+        <div class="cenik-price"><span class="price-num">1 700</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-icon">🤝</div>
+        <h3 class="cenik-name">Párová a rodinná terapie</h3>
+        <p class="cenik-duration">70 minut</p>
+        <div class="cenik-price"><span class="price-num">1 700</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-icon">🏖</div>
+        <h3 class="cenik-name">Terapeutické pískoviště</h3>
+        <p class="cenik-duration">50 minut</p>
+        <div class="cenik-price"><span class="price-num">1 500</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card muted">
+        <div class="cenik-icon">🎓</div>
+        <h3 class="cenik-name">Přednášky & workshopy</h3>
+        <p class="cenik-duration">dle rozsahu</p>
+        <div class="cenik-price"><span class="price-num">dle domluvy</span></div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="note-box">
+        <span class="note-title">Platba předem</span>
+        <p class="note-highlight">Převodem na účet č. XXX</p>
+        <p class="note-text">Platbu je nutné uhradit nejpozději 48 hodin před rezervovaným termínem. Pokud platba není připsána včas, sezení je stornováno.</p>
+      </div>
+      <div class="note-box">
+        <span class="note-title">Storno podmínky</span>
+        <p class="note-text">Změnu nebo zrušení termínu je možné nejpozději <strong style="font-weight:400;color:var(--text-plum);">48 hodin předem</strong>. Při pozdějším zrušení je nutné uhradit plnou cenu sezení.</p>
+      </div>
+    </div>
+
+    <div class="pojistovny-box">
+      <span class="note-title">Spolupráce s pojišťovnami</span>
+      <div class="pojistovny-top">
+        <p class="pojistovny-text">Jsem členkou České asociace pro psychoterapii — najdete mě na seznamu pojišťoven přispívajících na psychoterapeutická sezení. Výši příspěvku si ověřte u své pojišťovny nebo to probereme spolu.</p>
+        <div class="pojistovny-pills">
+          <a class="p-pill" href="#">VZP</a>
+          <a class="p-pill" href="#">ZPMV</a>
+          <a class="p-pill" href="#">OZP</a>
+          <a class="p-pill" href="#">ZPŠ</a>
+          <a class="p-pill" href="#">RBP</a>
+          <a class="p-pill" href="#">ČPZ</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt">
+    <div class="section-inner">
+    <div class="kontakt-heading-wrap">
+      <h2 class="kontakt-heading">Pojďme do toho.<br>Spølečně.</h2>
+    </div>
+
+    <div class="kontakt-grid">
+
+      <div class="form-card">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Jméno</label>
+            <input id="name" type="text" placeholder="Jana Nováková"/>
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" type="email" placeholder="vas@email.cz"/>
+          </div>
+        </div>
+        <div class="field">
+          <label for="topic">O co se jedná?</label>
+          <div class="select-wrap">
+            <select id="topic">
+              <option>Individuální terapie</option>
+              <option>Krizová intervence</option>
+              <option>Párová a rodinná terapie</option>
+              <option>Vzdělávání a konzultace</option>
+              <option>Jiné</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="format">Forma setkání</label>
+          <div class="select-wrap">
+            <select id="format">
+              <option>Osobně</option>
+              <option>Online</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">Zpráva</label>
+          <textarea id="message" placeholder="Stručně napište, co vás trápí..."></textarea>
+        </div>
+        <button class="submit-btn" type="button">Odeslat zprávu</button>
+      </div>
+
+      <div class="right-col">
+        <div class="info-row">
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6c0-2.5-2-4.5-4.5-4.5z"/>
+                <circle cx="8" cy="6" r="1.5"/>
+              </svg>
+            </div>
+            <span class="info-card-title">Adresa</span>
+            <p class="info-card-text">Bude doplněno</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 4l6 5 6-5"/>
+                <rect x="1" y="3" width="14" height="10" rx="2"/>
+              </svg>
+            </div>
+            <span class="info-card-title">Kontakt</span>
+            <p class="info-card-text">katerina@psycho.cz<br>+420 777 123 456</p>
+          </div>
+        </div>
+
+        <div class="map-card">
+          <svg class="map-bg" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="400" height="160" fill="#d4c8cc"/>
+            <rect x="0" y="70" width="400" height="12" fill="#c4b8bc" rx="2"/>
+            <rect x="0" y="95" width="400" height="8" fill="#c4b8bc" rx="2"/>
+            <rect x="80" y="0" width="10" height="160" fill="#c4b8bc" rx="2"/>
+            <rect x="180" y="0" width="14" height="160" fill="#c4b8bc" rx="2"/>
+            <rect x="290" y="0" width="8" height="160" fill="#c4b8bc" rx="2"/>
+            <rect x="30" y="20" width="60" height="40" rx="6" fill="#bfb0b5"/>
+            <rect x="150" y="30" width="80" height="30" rx="6" fill="#bfb0b5"/>
+            <rect x="260" y="15" width="100" height="50" rx="6" fill="#bfb0b5"/>
+            <circle cx="200" cy="80" r="8" fill="#FF3D9A"/>
+            <circle cx="200" cy="80" r="4" fill="#fff"/>
+          </svg>
+          <button class="map-btn" type="button">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+              <path d="M6 1l1.5 3h3l-2.5 2 1 3L6 7.5 3 9l1-3L1.5 4h3z"/>
+            </svg>
+            Zobrazit trasu
+          </button>
+        </div>
+
+        <div class="bottom-row">
+          <div class="social-icons">
+            <a class="social-icon" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#2a1a20" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="12" height="12" rx="3"/>
+                <circle cx="8" cy="8" r="2.5"/>
+                <circle cx="11.2" cy="4.8" r="0.6" fill="#2a1a20" stroke="none"/>
+              </svg>
+            </a>
+            <a class="social-icon" href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#2a1a20" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="12" height="12" rx="2"/>
+                <path d="M5 6v5M5 4.5v.01M8 11V8.5c0-1 .5-2.5 2.5-2.5V11"/>
+              </svg>
+            </a>
+          </div>
+          <a class="reservio-btn" href="#">
+            <svg viewBox="0 0 14 14" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="1" y="2" width="12" height="11" rx="2"/>
+              <path d="M1 6h12M4 1v2M10 1v2"/>
+            </svg>
+            Rezervovat termín
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>psychø — Mgr. Kateřina Fibichová</span>
+      <span>IČO: XXXXXXXX</span>
+      <span>© 2025</span>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Zpět nahoru">
+    <svg viewBox="0 0 16 16" fill="none" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M8 12V4M4 8l4-4 4 4"/>
+    </svg>
+  </button>
+
+  <script>
+    // ─── ANIMATED GRADIENT HERO ───
+    (function () {
+      const canvas = document.getElementById('heroCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const stops = [
+        { r: 196, g: 160, b: 220 },
+        { r: 230, g: 130, b: 160 },
+        { r: 242, g: 160, b: 130 },
+        { r: 240, g: 200, b: 120 },
+        { r: 215, g: 140, b: 200 },
+        { r: 200, g: 100, b: 170 },
+      ];
+
+      let t = 0;
+
+      function lerp(a, b, f) {
+        return a + (b - a) * f;
+      }
+
+      function lerpColor(c1, c2, f) {
+        return {
+          r: Math.round(lerp(c1.r, c2.r, f)),
+          g: Math.round(lerp(c1.g, c2.g, f)),
+          b: Math.round(lerp(c1.b, c2.b, f)),
+        };
+      }
+
+      function getColor(phase) {
+        const total = stops.length;
+        const scaled = (((phase % 1) + 1) % 1) * total;
+        const idx = Math.floor(scaled) % total;
+        const frac = scaled - Math.floor(scaled);
+        return lerpColor(stops[idx], stops[(idx + 1) % total], frac);
+      }
+
+      function drawGradient() {
+        const w = canvas.offsetWidth;
+        const h = canvas.offsetHeight;
+        canvas.width = w;
+        canvas.height = h;
+        t += 0.0011;
+
+        const tl = getColor(t);
+        const tr = getColor(t + 0.18);
+        const br = getColor(t + 0.36);
+        const bl = getColor(t + 0.54);
+
+        const imageData = ctx.createImageData(w, h);
+        const data = imageData.data;
+
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const fx = x / w;
+            const fy = y / h;
+            const top = lerpColor(tl, tr, fx);
+            const bot = lerpColor(bl, br, fx);
+            const col = lerpColor(top, bot, fy);
+            const i = (y * w + x) * 4;
+            data[i]     = col.r;
+            data[i + 1] = col.g;
+            data[i + 2] = col.b;
+            data[i + 3] = 255;
+          }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+        requestAnimationFrame(drawGradient);
+      }
+
+      drawGradient();
+    }());
+
+    // ─── FAQ ACCORDION ───
+    document.getElementById('faqList').addEventListener('click', function (e) {
+      const btn = e.target.closest('.faq-btn');
+      if (!btn) return;
+
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all open items
+      document.querySelectorAll('.faq-item.open').forEach(function (i) {
+        i.classList.remove('open');
+      });
+
+      // Open the clicked item if it was closed
+      if (!isOpen) {
+        item.classList.add('open');
+      }
+    });
+
+    // ─── BACK TO TOP VISIBILITY ───
+    window.addEventListener('scroll', function () {
+      const btn = document.getElementById('backToTop');
+      btn.classList.toggle('visible', window.scrollY > 400);
+    });
+  </script>
+</body>
+</html>

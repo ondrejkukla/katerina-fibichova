@@ -1,1742 +1,2224 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>psychø – Kateřina Fibichová</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>psychø — Kateřina Fibichová</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   <style>
-    /* ===== RESET & BASE ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    /* ─── RESET ─── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --pink:        #FF3D9A;
+      --pink-light:  #FDF0F5;
+      --cream:       #FDF4F0;
+      --text-dark:   #2a1a20;
+      --text-mid:    #4a3040;
+      --text-muted:  #9a7080;
+      --text-rose:   #7a5a65;
+      --text-plum:   #6a3a55;
+      --border:      rgba(255, 100, 160, 0.12);
+      --font-serif:  'Nunito', serif;
+      --font-sans:   'Open Sans', sans-serif;
+      --radius-pill: 999px;
+      --radius-card: 20px;
+      --radius-sm:   16px;
+
+      --max-width: 1440px;
+      --section-padding: 80px;
+      --section-padding-tablet: 40px;
+      --section-padding-mobile: 60px;
+    }
+
+    /* ─── BASE ─── */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'DM Sans', sans-serif;
-      color: #1a1a1a;
-      background: #fdf6f0;
+      font-family: var(--font-sans);
+      font-weight: 300;
+      background: #fff;
+      color: var(--text-dark);
       overflow-x: hidden;
     }
 
-    /* ===== VARIABLES ===== */
-    :root {
-      --pink: #E8607A;
-      --pink-light: #f0849a;
-      --yellow: #F5E642;
-      --gradient: linear-gradient(135deg, #e8a4b8 0%, #c9a0d4 35%, #b8a8e0 65%, #a0b8d8 100%);
-      --gradient-hero: linear-gradient(145deg, #f2b8c6 0%, #d4a8dc 30%, #baaee8 60%, #a8c4e0 100%);
-      --text-dark: #1a1a1a;
-      --text-mid: #4a4a4a;
-      --text-light: #ffffff;
-      --bg-light: #fdf6f0;
-      --bg-card: #ffffff;
-      --border-radius: 16px;
-      --shadow: 0 4px 24px rgba(0,0,0,0.08);
-      --shadow-hover: 0 8px 40px rgba(0,0,0,0.14);
-      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* ─── TYPOGRAPHY HELPERS ─── */
+    .serif {
+      font-family: var(--font-serif);
     }
 
-    /* ===== TYPOGRAPHY ===== */
-    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
-    h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 700; }
-    h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; }
-    h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 600; }
-    p { line-height: 1.75; color: var(--text-mid); }
+    /* ─── SECTION INNER CONTAINER ─── */
+    .section-inner {
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
 
-    /* ===== LOGO ===== */
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--text-light);
-      text-decoration: none;
+    /* ─── SECTION COMMON ─── */
+    section {
+      padding: 5rem 2.5rem;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--pink);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 300;
+      color: var(--pink);
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-outline {
       display: inline-block;
-    }
-    .logo-dark { color: var(--text-dark); }
-
-    /* ===== DECORATIVE SQUARES ===== */
-    .deco-square {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background: var(--yellow);
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    .deco-square-lg {
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-    }
-
-    /* ===== BUTTONS ===== */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      text-decoration: none;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--pink);
+      background: transparent;
+      border: 1.5px solid var(--pink);
+      border-radius: var(--radius-pill);
+      padding: 13px 36px;
       cursor: pointer;
-      border: none;
-      transition: var(--transition);
-      white-space: nowrap;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
     }
-    .btn-primary {
+
+    .btn-outline:hover {
       background: var(--pink);
       color: #fff;
-      box-shadow: 0 4px 16px rgba(232, 96, 122, 0.35);
-    }
-    .btn-primary:hover {
-      background: var(--pink-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(232, 96, 122, 0.45);
-    }
-    .btn-outline-white {
-      background: transparent;
-      color: #fff;
-      border: 1.5px solid rgba(255,255,255,0.7);
-    }
-    .btn-outline-white:hover {
-      background: rgba(255,255,255,0.15);
-      border-color: #fff;
-      transform: translateY(-2px);
-    }
-    .btn-outline-dark {
-      background: transparent;
-      color: var(--text-dark);
-      border: 1.5px solid rgba(26,26,26,0.3);
-    }
-    .btn-outline-dark:hover {
-      background: var(--text-dark);
-      color: #fff;
-      transform: translateY(-2px);
     }
 
-    /* ===== SECTION WRAPPER ===== */
-    .section {
-      padding: 96px 24px;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .section-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--pink);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* ===== NAVBAR ===== */
-    #navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+    /* ─── AVAILABILITY BANNER ─── */
+    #banner {
+      background: var(--pink);
+      color: #fff;
+      text-align: center;
+      padding: 10px 1rem;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      position: relative;
       z-index: 100;
-      padding: 20px 32px;
+    }
+
+    #banner a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* ─── STICKY NAV ─── */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      background: rgba(253, 244, 240, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      height: 60px;
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: var(--transition);
     }
-    #navbar.scrolled {
-      background: rgba(253, 246, 240, 0.92);
-      backdrop-filter: blur(12px);
-      padding: 14px 32px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+
+    .nav-logo {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-dark);
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+      text-decoration: none;
     }
-    #navbar.scrolled .logo { color: var(--text-dark); }
-    #navbar.scrolled .nav-links a { color: var(--text-dark); }
-    #navbar.scrolled .nav-links a:hover { color: var(--pink); }
+
+    .nav-middle {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 2rem;
       list-style: none;
     }
+
     .nav-links a {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.9);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    .nav-links a:hover { color: #fff; }
-    .nav-cta { display: flex; align-items: center; gap: 12px; }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      background: none;
-      border: none;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: var(--transition);
-    }
-    #navbar.scrolled .hamburger span { background: var(--text-dark); }
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(253, 246, 240, 0.98);
-      backdrop-filter: blur(20px);
-      z-index: 99;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--text-dark);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    .mobile-menu a:hover { color: var(--pink); }
-    .mobile-close {
-      position: absolute;
-      top: 24px; right: 32px;
-      font-size: 2rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-dark);
-    }
-
-    /* ===== HERO ===== */
-    #hero {
-      min-height: 100vh;
-      background: var(--gradient-hero);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 120px 32px 80px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg-deco {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.15;
-      pointer-events: none;
-    }
-    .hero-bg-deco-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, #fff 0%, transparent 70%);
-      top: -200px; right: -100px;
-    }
-    .hero-bg-deco-2 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, #f5e642 0%, transparent 70%);
-      bottom: -100px; left: -100px;
-    }
-    .hero-squares {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .hero-sq {
-      position: absolute;
-      background: var(--yellow);
-      border-radius: 3px;
-      opacity: 0.6;
-    }
-    .hero-sq-1 { width: 12px; height: 12px; top: 18%; right: 15%; }
-    .hero-sq-2 { width: 8px; height: 8px; top: 35%; right: 25%; opacity: 0.4; }
-    .hero-sq-3 { width: 14px; height: 14px; bottom: 25%; left: 10%; }
-    .hero-sq-4 { width: 6px; height: 6px; bottom: 40%; right: 10%; opacity: 0.5; }
-    .hero-sq-5 { width: 10px; height: 10px; top: 60%; left: 30%; opacity: 0.3; }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .hero-eyebrow {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .hero-title {
-      color: #fff;
-      margin-bottom: 8px;
-      line-height: 1.1;
-    }
-    .hero-title em {
-      font-style: italic;
-      font-weight: 400;
-    }
-    .hero-subtitle {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-size: 13px;
       font-weight: 300;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 48px;
-      letter-spacing: 0.02em;
-    }
-    .hero-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
+      color: var(--text-rose);
+      text-decoration: none;
+      transition: color 0.2s;
     }
 
-    /* ===== CO JE PSYCHØ ===== */
-    #co-je {
-      background: var(--gradient);
-      color: #fff;
-      position: relative;
-      overflow: hidden;
+    .nav-links a:hover {
+      color: var(--pink);
     }
-    #co-je .section-label { color: rgba(255,255,255,0.7); }
-    #co-je h2 { color: #fff; }
-    #co-je p { color: rgba(255,255,255,0.88); }
-    .coje-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
-    .coje-text-block { }
-    .coje-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-style: italic;
-      color: rgba(255,255,255,0.95);
-      line-height: 1.5;
-      border-left: 3px solid var(--yellow);
-      padding-left: 24px;
-      margin: 32px 0;
-    }
-    .coje-pills {
+
+    .nav-right {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 32px;
-    }
-    .pill {
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 18px;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 50px;
-      font-size: 0.88rem;
+      gap: 1.5rem;
+    }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--pink);
+      border: 1.5px solid var(--pink);
+      border-radius: var(--radius-pill);
+      padding: 7px 20px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--pink);
       color: #fff;
-      backdrop-filter: blur(4px);
     }
-    .coje-visual {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .coje-card {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: var(--border-radius);
-      padding: 28px;
-      backdrop-filter: blur(8px);
-      transition: var(--transition);
-    }
-    .coje-card:hover {
-      background: rgba(255,255,255,0.18);
-      transform: translateX(6px);
-    }
-    .coje-card-icon {
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-    }
-    .coje-card h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .coje-card p {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.6;
-    }
-    .phonetic {
-      display: inline-block;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.6);
+
+    .nav-lang {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+      cursor: pointer;
       letter-spacing: 0.05em;
-      margin-top: 8px;
     }
 
-    /* ===== KDO JSEM ===== */
-    #kdo-jsem {
-      background: var(--bg-light);
-    }
-    .kdojsem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 72px;
-      align-items: center;
-    }
-    .photo-placeholder {
-      aspect-ratio: 3/4;
-      background: linear-gradient(145deg, #f0d4dc 0%, #d4c0e0 50%, #c0cce8 100%);
-      border-radius: 24px;
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 91vh;
+      min-height: 560px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      color: rgba(100,80,120,0.6);
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      position: relative;
       overflow: hidden;
     }
-    .photo-placeholder::before {
-      content: '';
+
+    #heroCanvas {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, rgba(180,140,200,0.3));
-    }
-    .photo-placeholder-icon {
-      font-size: 3rem;
-      opacity: 0.5;
-    }
-    .kdojsem-text .section-label { margin-bottom: 16px; }
-    .kdojsem-text h2 { margin-bottom: 24px; }
-    .kdojsem-text p { margin-bottom: 16px; }
-    .kdojsem-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 28px;
-    }
-    .tag {
-      padding: 6px 16px;
-      background: #f5eef8;
-      border-radius: 50px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: #7a5a8a;
-    }
-    .kdojsem-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 32px;
-    }
-    .badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
-      background: #fff;
-      border: 1px solid #e8e0f0;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-dark);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-    .badge-dot {
-      width: 8px; height: 8px;
-      background: var(--pink);
-      border-radius: 50%;
-      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
     }
 
-    /* ===== CO NABÍZÍM ===== */
-    #co-nabizim {
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.045;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(64px, 12vw, 110px);
+      font-weight: 400;
+      color: #fff;
+      line-height: 0.95;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.05em;
+      margin-bottom: 6rem;
+    }
+
+    .hero-cta {
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      border-radius: var(--radius-pill);
+      padding: 12px 32px;
+      font-size: 20px;
+      font-weight: 400;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: rgba(255, 255, 255, 0.28);
+      border-color: #fff;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      animation: bounce 2s ease-in-out infinite;
+      background: none;
+      border: none;
+    }
+
+    .hero-scroll:hover {
+      opacity: 1;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(7px); }
+    }
+
+    /* ─── SERVICES ─── */
+    #sluzby {
+      background: var(--cream);
+
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 6rem;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .service-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+
+    .service-body {
+      padding: 1.5rem 1.75rem 2rem;
+    }
+
+    .service-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text-dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .service-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-rose);
+      line-height: 1.7;
+    }
+
+    .services-cta {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ─── ABOUT ─── */
+    #omne {
       background: #fff;
     }
-    .nabizim-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .nabizim-header .section-label { justify-content: center; }
-    .nabizim-grid {
+
+    .omne-top {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 4rem;
     }
-    .service-card {
-      background: var(--bg-light);
-      border-radius: var(--border-radius);
-      padding: 40px 32px;
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition);
-      border: 1px solid transparent;
+
+    .omne-bio {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 2rem;
     }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--gradient);
-      opacity: 0;
-      transition: var(--transition);
+
+    .omne-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(200,160,220,0.2);
+
+    .tag {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--pink);
+      background: var(--pink-light);
+      border-radius: var(--radius-pill);
+      padding: 5px 14px;
     }
-    .service-card:hover::before { opacity: 1; }
-    .service-icon {
-      width: 56px; height: 56px;
-      background: var(--gradient);
-      border-radius: 14px;
+
+    .omne-photo {
+      width: 80%;
+      aspect-ratio: 3 / 4;
+      border-radius: 999px 999px 60% 60%;
+      background-image: url('./katerina.png');
+      background-size: cover;
+      /* background: linear-gradient(160deg, #F9D0E8, #D8A0E0); */
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 24px;
-    }
-    .service-card h3 { margin-bottom: 12px; }
-    .service-card p { font-size: 0.92rem; }
-    .service-card-tag {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 4px 12px;
-      background: rgba(232, 96, 122, 0.1);
-      color: var(--pink);
-      border-radius: 50px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-    }
-    .service-card-tag.urgent {
-      background: rgba(245, 230, 66, 0.2);
-      color: #8a7a00;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* ===== KVALIFIKACE ===== */
-    #kvalifikace {
-      background: var(--bg-light);
+    /* ─── STATS ─── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
     }
-    .kval-grid {
+
+    .stat {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+    }
+
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 300;
+      color: var(--pink);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ─── QUALIFICATIONS ─── */
+    .kvalif-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 300;
+      color: var(--text-dark);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .kvalif-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      gap: 2rem;
     }
-    .kval-block h3 {
-      font-size: 1.1rem;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+
+    .kvalif-col-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--pink);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
     }
-    .kval-list {
+
+    .kvalif-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 14px;
-    }
-    .kval-list li {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      font-size: 0.92rem;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
-    .kval-list li .deco-square { margin-top: 6px; flex-shrink: 0; }
-    .kval-list li strong {
-      display: block;
-      color: var(--text-dark);
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .kval-praxe {
-      margin-top: 48px;
-      padding: 32px;
-      background: #fff;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-    }
-    .kval-praxe h3 {
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
       gap: 10px;
-    }
-    .praxe-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .praxe-tag {
-      padding: 6px 14px;
-      background: #f5eef8;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      color: #7a5a8a;
-      font-weight: 500;
-    }
-    .supervize-note {
-      margin-top: 20px;
-      padding: 16px 20px;
-      background: linear-gradient(135deg, rgba(232,96,122,0.08), rgba(180,140,220,0.08));
-      border-left: 3px solid var(--pink);
-      border-radius: 0 8px 8px 0;
-      font-size: 0.88rem;
-      color: var(--text-mid);
-      line-height: 1.6;
     }
 
-    /* ===== PR / REFERENCE ===== */
-    #pr {
-      background: #fff;
-    }
-    .pr-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .pr-header .section-label { justify-content: center; }
-    .pr-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-    }
-    .pr-block h3 {
-      font-size: 1.1rem;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .media-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .media-item {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 20px;
-      background: var(--bg-light);
-      border-radius: 12px;
-      transition: var(--transition);
-    }
-    .media-item:hover {
-      transform: translateX(4px);
-      box-shadow: var(--shadow);
-    }
-    .media-logo {
-      width: 48px; height: 48px;
-      background: var(--gradient);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .media-info strong {
-      display: block;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-dark);
-      margin-bottom: 4px;
-    }
-    .media-info span {
-      font-size: 0.82rem;
+    .kvalif-list li {
+      font-size: 13.5px;
+      font-weight: 300;
       color: var(--text-mid);
-    }
-    .workshop-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .workshop-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 20px;
-      background: var(--bg-light);
-      border-radius: 12px;
-      font-size: 0.9rem;
-      color: var(--text-mid);
-      transition: var(--transition);
-    }
-    .workshop-item:hover { transform: translateX(4px); }
-    .references-row {
-      margin-top: 56px;
-    }
-    .references-row h3 {
-      text-align: center;
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .ref-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .ref-card {
-      background: var(--bg-light);
-      border-radius: var(--border-radius);
-      padding: 28px;
+      line-height: 1.5;
+      padding-left: 1.2rem;
       position: relative;
-      transition: var(--transition);
     }
-    .ref-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
+
+    .kvalif-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--pink);
+      opacity: 0.4;
     }
-    .ref-quote-mark {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
+
+    /* ─── MEDIA & TESTIMONIALS ─── */
+    #reference {
+      background: var(--cream);
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 4rem;
+    }
+
+    .media-card {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.15s;
+    }
+
+    .media-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .media-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .media-thumb img,
+    .media-thumb svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-body {
+      padding: 1rem 1.25rem 1.25rem;
+    }
+
+    .media-title {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    .ref-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .cit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .cit-card {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cit-mark {
+      font-family: var(--font-serif);
+      font-size: 48px;
+      font-weight: 300;
       color: var(--pink);
-      opacity: 0.3;
+      opacity: 0.2;
       line-height: 1;
       margin-bottom: -16px;
     }
-    .ref-text {
-      font-size: 0.9rem;
+
+    .cit-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 15px;
+      font-weight: 300;
       color: var(--text-mid);
       line-height: 1.7;
-      font-style: italic;
-      margin-bottom: 16px;
-    }
-    .ref-author {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-    .ref-placeholder {
-      opacity: 0.5;
     }
 
-    /* ===== FAQ ===== */
-    #faq {
-      background: var(--gradient);
+    .cit-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .cit-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F9D0E8, #D8A0E0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 400;
       color: #fff;
+      flex-shrink: 0;
     }
-    #faq .section-label { color: rgba(255,255,255,0.7); }
-    #faq h2 { color: #fff; margin-bottom: 48px; }
-    .faq-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+
+    .cit-name {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
     }
+
+    /* ─── FAQ ─── */
+    #faq {
+      background: #fff;
+    }
+
+    .faq-list {
+      border-top: 1px solid var(--border);
+    }
+
     .faq-item {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 14px;
-      overflow: hidden;
-      backdrop-filter: blur(8px);
-      transition: var(--transition);
+      border-bottom: 1px solid var(--border);
+      border-radius: 8px;
+      transition: background 0.2s;
     }
-    .faq-item:hover { background: rgba(255,255,255,0.15); }
-    .faq-question {
+
+    .faq-item:hover,
+    .faq-item.open {
+      background: var(--cream);
+    }
+
+    .faq-btn {
       width: 100%;
       background: none;
       border: none;
-      padding: 22px 24px;
+      padding: 1.4rem 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 1rem;
       cursor: pointer;
       text-align: left;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #fff;
-      transition: var(--transition);
     }
+
+    .faq-q {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-plum);
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+
+    .faq-item:hover .faq-q,
+    .faq-item.open .faq-q {
+      color: var(--pink);
+    }
+
     .faq-icon {
-      width: 28px; height: 28px;
-      background: rgba(255,255,255,0.15);
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
+      border: 1.5px solid rgba(255, 61, 154, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 1rem;
-      transition: var(--transition);
-    }
-    .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(255,255,255,0.25); }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .faq-answer-inner {
-      padding: 0 24px 22px;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.82);
-      line-height: 1.75;
+      transition: background 0.2s, border-color 0.2s;
     }
 
-    /* ===== CENÍK ===== */
+    .faq-icon svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--pink);
+      border-color: var(--pink);
+    }
+
+    .faq-item.open .faq-icon svg {
+      transform: rotate(180deg);
+    }
+
+    .faq-item.open .faq-icon svg path {
+      stroke: #fff;
+    }
+
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: grid-template-rows 0.5s ease;
+    }
+
+    .faq-answer > div {
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .faq-item.open .faq-answer {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-answer p {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+      padding: 0 1rem 1.4rem;
+    }
+
+    /* ─── PRICING ─── */
     #cenik {
-      background: var(--bg-light);
+      background: var(--cream);
     }
-    .cenik-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .cenik-header .section-label { justify-content: center; }
+
     .cenik-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-bottom: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 2rem;
     }
-    .price-card {
+
+    .cenik-card {
       background: #fff;
-      border-radius: var(--border-radius);
-      padding: 32px;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
+      border-radius: var(--radius-card);
+      padding: 2rem 1.75rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
-    .price-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--gradient);
-      opacity: 0;
-      transition: var(--transition);
+
+    .cenik-icon {
+      font-size: 24px;
+      line-height: 1;
     }
-    .price-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
+
+    .cenik-name {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-dark);
+      line-height: 1.3;
     }
-    .price-card:hover::after { opacity: 1; }
-    .price-card.featured {
-      background: var(--gradient);
+
+    .cenik-duration {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-top: -0.5rem;
+    }
+
+    .cenik-price {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .price-num {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--pink);
+      line-height: 1;
+    }
+
+    .price-unit {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+    }
+
+    /* Muted variant for "dle domluvy" card */
+    .cenik-card.muted .price-num {
+      font-size: 20px;
+      color: var(--text-muted);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .note-box {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 1.5rem 1.75rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .note-title {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--pink);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .note-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .note-highlight {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-plum);
+    }
+
+    .pojistovny-box {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 16px;
+    }
+
+    .pojistovny-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .pojistovny-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 55ch;
+    }
+
+    .pojistovny-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .p-pill {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--pink);
+      background: var(--pink-light);
+      border-radius: var(--radius-pill);
+      padding: 5px 14px;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .p-pill:hover {
+      background: var(--pink);
       color: #fff;
     }
-    .price-card.featured h3 { color: #fff; }
-    .price-card.featured p { color: rgba(255,255,255,0.85); }
-    .price-card.featured .price-amount { color: #fff; }
-    .price-card.featured .price-duration { color: rgba(255,255,255,0.7); }
-    .price-card h3 { margin-bottom: 8px; font-size: 1.15rem; }
-    .price-amount {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
+
+    /* ─── CONTACT ─── */
+    #kontakt {
+      background: var(--cream);
+    }
+
+    .kontakt-heading-wrap {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .kontakt-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 300;
       color: var(--text-dark);
-      line-height: 1;
-      margin: 16px 0 4px;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
     }
-    .price-duration {
-      font-size: 0.85rem;
-      color: var(--text-mid);
-      margin-bottom: 12px;
-    }
-    .price-card p { font-size: 0.88rem; }
-    .price-card-domluva {
-      background: #fff;
-      border-radius: var(--border-radius);
-      padding: 32px;
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      grid-column: 1 / -1;
-    }
-    .price-card-domluva h3 { margin-bottom: 6px; }
-    .price-card-domluva p { font-size: 0.88rem; }
-    .cenik-notes {
+
+    .kontakt-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      margin-top: 32px;
+      align-items: start;
     }
-    .cenik-note {
-      background: #fff;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-    .cenik-note-icon {
-      font-size: 1.5rem;
-      flex-shrink: 0;
-    }
-    .cenik-note h4 {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .cenik-note p { font-size: 0.85rem; }
 
-    /* ===== KONTAKT ===== */
-    #kontakt {
-      background: var(--gradient-hero);
-      color: #fff;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    #kontakt .section-label { color: rgba(255,255,255,0.7); justify-content: center; }
-    .kontakt-title {
-      color: #fff;
-      margin-bottom: 16px;
-    }
-    .kontakt-subtitle {
-      color: rgba(255,255,255,0.8);
-      font-size: 1.1rem;
-      margin-bottom: 48px;
-    }
-    .kontakt-cta {
+    /* Contact form */
+    .form-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      padding: 2rem;
+      border: 1px solid var(--border);
       display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 72px;
+      flex-direction: column;
+      gap: 1.25rem;
     }
-    .kontakt-info-grid {
+
+    .form-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      max-width: 900px;
-      margin: 0 auto 48px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
-    .kontakt-info-item {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 14px;
-      padding: 24px 16px;
-      backdrop-filter: blur(8px);
-      transition: var(--transition);
-    }
-    .kontakt-info-item:hover {
-      background: rgba(255,255,255,0.18);
-      transform: translateY(-3px);
-    }
-    .kontakt-info-icon { font-size: 1.5rem; margin-bottom: 10px; }
-    .kontakt-info-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 6px;
-    }
-    .kontakt-info-value {
-      font-size: 0.88rem;
-      color: #fff;
-      font-weight: 500;
-      word-break: break-all;
-    }
-    .social-links {
+
+    .field {
       display: flex;
-      justify-content: center;
-      gap: 16px;
+      flex-direction: column;
+      gap: 6px;
     }
-    .social-link {
-      width: 48px; height: 48px;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
+
+    .field label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-mid);
+      background: var(--cream);
+      border: 1px solid rgba(255, 100, 160, 0.15);
+      border-radius: 10px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      appearance: none;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(255, 61, 154, 0.4);
+    }
+
+    .field textarea {
+      resize: none;
+      height: 110px;
+    }
+
+    .select-wrap {
+      position: relative;
+    }
+
+    /* Custom dropdown arrow */
+    .select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid var(--text-muted);
+      pointer-events: none;
+    }
+
+    .submit-btn {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: var(--text-dark);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 14px;
+      width: 100%;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: var(--pink);
+    }
+
+    /* Contact right column */
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-card {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .info-icon {
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
+      background: var(--pink-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: var(--transition);
+      margin-bottom: 0.25rem;
     }
-    .social-link:hover {
-      background: rgba(255,255,255,0.25);
-      transform: translateY(-3px);
+
+    .info-icon svg {
+      width: 16px;
+      height: 16px;
     }
-    .kontakt-bg-sq {
+
+    .info-card-title {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-dark);
+    }
+
+    .info-card-text {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Map placeholder */
+    .map-card {
+      background: #e8dde0;
+      border-radius: var(--radius-sm);
+      height: 160px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .map-card svg.map-bg {
       position: absolute;
-      background: var(--yellow);
-      border-radius: 3px;
-      opacity: 0.4;
-      pointer-events: none;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
     }
-    .kontakt-bg-sq-1 { width: 14px; height: 14px; top: 15%; left: 8%; }
-    .kontakt-bg-sq-2 { width: 8px; height: 8px; top: 30%; right: 12%; opacity: 0.3; }
-    .kontakt-bg-sq-3 { width: 12px; height: 12px; bottom: 20%; left: 15%; opacity: 0.35; }
-    .kontakt-bg-sq-4 { width: 10px; height: 10px; bottom: 35%; right: 8%; }
 
-    /* ===== FOOTER ===== */
+    .map-btn {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: var(--text-dark);
+      background: #fff;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .map-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Social & booking row */
+    .bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.25rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid rgba(255, 100, 160, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      border-color: var(--pink);
+    }
+
+    .social-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .reservio-btn {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      color: #fff;
+      background: var(--pink);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 10px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+
+    .reservio-btn:hover {
+      background: #e0307f;
+    }
+
+    .reservio-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ─── FOOTER ─── */
     footer {
-      background: #1a1a1a;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 24px;
-      font-size: 0.82rem;
-    }
-    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
-    footer a:hover { color: #fff; }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .coje-grid { grid-template-columns: 1fr; gap: 40px; }
-      .kdojsem-grid { grid-template-columns: 1fr; gap: 40px; }
-      .photo-placeholder { aspect-ratio: 4/3; max-width: 400px; }
-      .nabizim-grid { grid-template-columns: 1fr; }
-      .kval-grid { grid-template-columns: 1fr; }
-      .pr-grid { grid-template-columns: 1fr; }
-      .ref-cards { grid-template-columns: 1fr; }
-      .faq-grid { grid-template-columns: 1fr; }
-      .cenik-grid { grid-template-columns: 1fr; }
-      .cenik-notes { grid-template-columns: 1fr; }
-      .kontakt-info-grid { grid-template-columns: repeat(2, 1fr); }
-      .price-card-domluva { flex-direction: column; text-align: center; }
-    }
-    @media (max-width: 640px) {
-      .section { padding: 72px 20px; }
-      #hero { padding: 100px 20px 64px; }
-      .nav-links { display: none; }
-      .nav-cta .btn { display: none; }
-      .hamburger { display: flex; }
-      .hero-nav { gap: 8px; }
-      .hero-nav .btn { padding: 10px 18px; font-size: 0.85rem; }
-      .kontakt-info-grid { grid-template-columns: 1fr 1fr; }
-      #navbar { padding: 16px 20px; }
-      #navbar.scrolled { padding: 12px 20px; }
-    }
-    @media (max-width: 400px) {
-      .kontakt-info-grid { grid-template-columns: 1fr; }
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 2.5rem;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--text-muted);
     }
 
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .animate-in {
+
+    /* ─── BACK TO TOP ─── */
+    #backToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 50;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid rgba(255, 100, 160, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s, border-color 0.2s;
+      box-shadow: 0 2px 12px rgba(255, 61, 154, 0.1);
     }
-    .animate-in.visible {
+
+    #backToTop.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    .hero-content > * {
-      animation: fadeInUp 0.7s ease forwards;
+
+    #backToTop:hover {
+      border-color: var(--pink);
     }
-    .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-    .hero-content > *:nth-child(2) { animation-delay: 0.25s; }
-    .hero-content > *:nth-child(3) { animation-delay: 0.4s; }
-    .hero-content > *:nth-child(4) { animation-delay: 0.55s; }
+
+    #backToTop svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ─── MOTION & INTERACTION LAYER ─── */
+
+    /* Reveal base state — hidden until .is-visible is added by JS */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stagger delays applied via data-delay attribute in JS */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal[data-delay="1"] { transition-delay: 0.07s; }
+      .reveal[data-delay="2"] { transition-delay: 0.14s; }
+      .reveal[data-delay="3"] { transition-delay: 0.21s; }
+      .reveal[data-delay="4"] { transition-delay: 0.28s; }
+      .reveal[data-delay="5"] { transition-delay: 0.35s; }
+      .reveal[data-delay="6"] { transition-delay: 0.42s; }
+      .reveal[data-delay="7"] { transition-delay: 0.49s; }
+      .reveal[data-delay="8"] { transition-delay: 0.56s; }
+    }
+
+    /* ── Card hover: lift + shadow ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .service-card,
+      .cit-card,
+      .cenik-card,
+      .note-box,
+      .info-card {
+        transition:
+          transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          background 0.2s;
+      }
+
+      .service-card:hover,
+      .cit-card:hover,
+      .cenik-card:hover,
+      .note-box:hover,
+      .info-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 32px rgba(255, 61, 154, 0.10);
+      }
+    }
+
+    /* ── Media card image zoom ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .media-card .media-thumb img,
+      .media-card .media-thumb svg {
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .media-card:hover .media-thumb img,
+      .media-card:hover .media-thumb svg {
+        transform: scale(1.04);
+      }
+
+      /* Ensure media-card itself also gets lift */
+      .media-card {
+        transition:
+          transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .media-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 32px rgba(255, 61, 154, 0.10);
+      }
+    }
+
+    /* ── Primary button scale ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .submit-btn,
+      .reservio-btn,
+      .hero-cta {
+        transition:
+          background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .submit-btn:hover,
+      .reservio-btn:hover,
+      .hero-cta:hover {
+        transform: scale(1.03);
+      }
+
+      /* Outline buttons: smooth transition, no scale */
+      .btn-outline,
+      .nav-cta {
+        transition:
+          background 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    /* ── Nav link underline slide-in ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .nav-links a {
+        background-image: linear-gradient(var(--pink), var(--pink));
+        background-repeat: no-repeat;
+        background-size: 0% 1px;
+        background-position: left bottom;
+        transition:
+          color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          background-size 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .nav-links a:hover {
+        background-size: 100% 1px;
+      }
+    }
+
+    /* ── Social icon hover ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .social-icon {
+        transition:
+          border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .social-icon:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    /* ── p-pill hover ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .p-pill {
+        transition:
+          background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    /* ── FAQ item background transition ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .faq-item {
+        transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .faq-icon {
+        transition:
+          background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+          border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .faq-icon svg {
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .faq-q {
+        transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .faq-answer {
+        transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    /* ── Form field focus ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .field input,
+      .field select,
+      .field textarea {
+        transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      #nav {
+        padding: 0 1.5rem;
+      }
+
+      footer {
+        padding: 1.5rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .omne-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .omne-photo {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+
+      .stats-row,
+      .kvalif-grid,
+      .kontakt-grid,
+      .info-grid,
+      .info-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
-  <nav id="navbar">
-    <a href="#hero" class="logo">psychø</a>
-    <ul class="nav-links">
-      <li><a href="#kdo-jsem">o mně</a></li>
-      <li><a href="#co-nabizim">služby</a></li>
-      <li><a href="#faq">F&Q</a></li>
-      <li><a href="#cenik">ceník</a></li>
-    </ul>
-    <div class="nav-cta">
-      <a href="#kontakt" class="btn btn-primary">chci se objednat</a>
-    </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-close" id="mobileClose">✕</button>
-    <a href="#kdo-jsem" class="mobile-link">o mně</a>
-    <a href="#co-nabizim" class="mobile-link">služby</a>
-    <a href="#faq" class="mobile-link">F&Q</a>
-    <a href="#cenik" class="mobile-link">ceník</a>
-    <a href="#kontakt" class="btn btn-primary">chci se objednat</a>
+  <!-- BANNER -->
+  <div id="banner">
+    Aktuálně přijímám nové klienty — <a href="#kontakt">objednejte se →</a>
   </div>
 
-  <!-- ===== HERO ===== -->
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo"> ø</a>
+      <ul class="nav-links nav-middle">
+        <li><a href="#omne">o mně</a></li>
+        <li><a href="#sluzby">služby</a></li>
+        <li><a href="#faq">F&Qs</a></li>
+        <li><a href="#cenik">ceník</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#kontakt" class="nav-cta">chci se objednat</a>
+<!--         <span class="nav-lang">CZ | EN</span> -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
   <section id="hero">
-    <div class="hero-bg-deco hero-bg-deco-1"></div>
-    <div class="hero-bg-deco hero-bg-deco-2"></div>
-    <div class="hero-squares">
-      <div class="hero-sq hero-sq-1"></div>
-      <div class="hero-sq hero-sq-2"></div>
-      <div class="hero-sq hero-sq-3"></div>
-      <div class="hero-sq hero-sq-4"></div>
-      <div class="hero-sq hero-sq-5"></div>
-    </div>
+    <canvas id="heroCanvas"></canvas>
+    <svg class="hero-grain" xmlns="http://www.w3.org/2000/svg">
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)"/>
+    </svg>
     <div class="hero-content">
-      <div class="hero-eyebrow">
-        <div class="deco-square"></div>
-        psycholog &amp; psychoterapeut
-      </div>
-      <h1 class="hero-title">Ahøj,<br>jsem <em>Kateřina</em></h1>
+      <h1 class="hero-title">Ahøj,<br>jsem<br>Kateřina</h1>
       <p class="hero-subtitle">psycholog a psychoterapeut</p>
-      <nav class="hero-nav">
-        <a href="#kdo-jsem" class="btn btn-outline-white">o mně</a>
-        <a href="#co-nabizim" class="btn btn-outline-white">služby</a>
-        <a href="#kontakt" class="btn btn-primary">chci se objednat</a>
-        <a href="#faq" class="btn btn-outline-white">F&amp;Q</a>
-        <a href="#cenik" class="btn btn-outline-white">ceník</a>
-      </nav>
+      <a href="#kontakt" class="hero-cta">chci se objednat</a>
+    </div>
+    <button class="hero-scroll" onclick="document.getElementById('sluzby').scrollIntoView({behavior:'smooth'})" aria-label="Přejít na služby">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 9L12 15L18 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="sluzby">
+    <div class="section-inner">
+    <h2 class="section-heading reveal">Cø nabízím</h2>
+    <p class="section-sub reveal">Individuálně, v páru, online i osobně</p>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <svg class="service-img" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="sg1" cx="50%" cy="50%" r="70%">
+              <stop offset="0%" stop-color="#F9D0E8"/>
+              <stop offset="100%" stop-color="#E8A8CC"/>
+            </radialGradient>
+          </defs>
+          <rect width="320" height="240" fill="url(#sg1)"/>
+          <ellipse cx="160" cy="130" rx="80" ry="70" fill="rgba(255,255,255,0.25)"/>
+          <!-- Left speech bubble -->
+          <rect x="80" y="80" width="70" height="50" rx="14" fill="white" opacity="0.9"/>
+          <polygon points="90,130 80,148 106,130" fill="white" opacity="0.9"/>
+          <circle cx="102" cy="105" r="5" fill="#FF3D9A"/>
+          <circle cx="115" cy="105" r="5" fill="#FF3D9A"/>
+          <circle cx="128" cy="105" r="5" fill="#FF3D9A"/>
+          <!-- Right speech bubble -->
+          <rect x="170" y="100" width="70" height="50" rx="14" fill="white" opacity="0.9"/>
+          <polygon points="220,150 230,168 204,150" fill="white" opacity="0.9"/>
+          <circle cx="192" cy="125" r="5" fill="#FF3D9A" opacity="0.5"/>
+          <circle cx="205" cy="125" r="5" fill="#FF3D9A" opacity="0.5"/>
+          <circle cx="218" cy="125" r="5" fill="#FF3D9A" opacity="0.5"/>
+        </svg>
+        <div class="service-body">
+          <h3 class="service-title">Individuální<br>poradenství</h3>
+          <p class="service-desc">Pro děti, dospívající i dospělé. Česky i anglicky. Osobně i online.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-img" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="sg2" cx="40%" cy="40%" r="70%">
+              <stop offset="0%" stop-color="#FAD0DC"/>
+              <stop offset="100%" stop-color="#F0A0B8"/>
+            </radialGradient>
+          </defs>
+          <rect width="320" height="240" fill="url(#sg2)"/>
+          <ellipse cx="160" cy="120" rx="90" ry="75" fill="rgba(255,255,255,0.2)"/>
+          <rect x="148" y="60" width="24" height="90" rx="12" fill="white" opacity="0.9"/>
+          <circle cx="160" cy="175" r="14" fill="white" opacity="0.9"/>
+          <circle cx="160" cy="112" r="55" fill="none" stroke="white" stroke-width="2" opacity="0.35"/>
+        </svg>
+        <div class="service-body">
+          <h3 class="service-title">Krizová<br>intervence</h3>
+          <p class="service-desc">Rychlá a funkční podpora v akutní krizi. Doba objednání do 24 hodin.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <svg class="service-img" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <radialGradient id="sg3" cx="60%" cy="40%" r="70%">
+              <stop offset="0%" stop-color="#F5D0F0"/>
+              <stop offset="100%" stop-color="#D8A0E0"/>
+            </radialGradient>
+          </defs>
+          <rect width="320" height="240" fill="url(#sg3)"/>
+          <ellipse cx="160" cy="130" rx="85" ry="72" fill="rgba(255,255,255,0.2)"/>
+          <path d="M80 170 Q80 80 160 80 Q240 80 240 170" fill="none" stroke="white" stroke-width="18" stroke-linecap="round" opacity="0.9"/>
+          <path d="M100 170 Q100 102 160 102 Q220 102 220 170" fill="none" stroke="white" stroke-width="13" stroke-linecap="round" opacity="0.6"/>
+          <path d="M118 170 Q118 122 160 122 Q202 122 202 170" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" opacity="0.35"/>
+        </svg>
+        <div class="service-body">
+          <h3 class="service-title">Vzdělávání<br>a konzultace</h3>
+          <p class="service-desc">V oblasti duševního zdraví, školní psychologie a specifických poruch učení.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="services-cta">
+      <a href="#kontakt" class="btn-outline">odkaz na calendly</a>
+    </div>
     </div>
   </section>
 
-  <!-- ===== CO JE PSYCHØ ===== -->
-  <section id="co-je" class="section">
-    <div class="container">
-      <div class="coje-grid">
-        <div class="coje-text-block animate-in">
-          <div class="section-label">
-            <div class="deco-square" style="background:rgba(255,255,255,0.5)"></div>
-            filozofie
-          </div>
-          <h2>Co je<br>psychø?</h2>
-          <span class="phonetic">[:psyché:]</span>
-          <blockquote class="coje-quote">
-            "Žijeme na pevnině, kde je hluk. Termíny. Výkony. Notifikace. A pak existují ostrovy."
-          </blockquote>
-          <p>Psychø v sobě nese dvě části. <strong style="color:#fff">Psyche</strong> je duše, mysl, vnitřní svět – myšlenky, emoce, vzpomínky, zranění i naděje. <strong style="color:#fff">ø</strong> je v dánštině ostrov. Místo oddělené od pevniny, obklopené vodou, s vlastním rytmem.</p>
-          <p style="margin-top:16px">Dohromady tak psychø představuje obraz <strong style="color:#fff">ostrova pro duši</strong>. Místo, kde není nutné nic dokazovat, nic stíhat ani být „v pořádku". Stačí tu jen být.</p>
-          <div class="coje-pills">
-            <span class="pill"><span class="deco-square" style="background:var(--yellow);width:6px;height:6px"></span> bezpečný prostor</span>
-            <span class="pill"><span class="deco-square" style="background:var(--yellow);width:6px;height:6px"></span> jasné hranice</span>
-            <span class="pill"><span class="deco-square" style="background:var(--yellow);width:6px;height:6px"></span> klidnější tempo</span>
-            <span class="pill"><span class="deco-square" style="background:var(--yellow);width:6px;height:6px"></span> více laskavosti</span>
-          </div>
-        </div>
-        <div class="coje-visual animate-in">
-          <div class="coje-card">
-            <div class="coje-card-icon">🌊</div>
-            <h4>Zpomalení</h4>
-            <p>Místo, kam se nejede něco stihnout. Ale přistát. Vnímat. Dýchat.</p>
-          </div>
-          <div class="coje-card">
-            <div class="coje-card-icon">🌿</div>
-            <h4>Sebepéče</h4>
-            <p>Péče o duši potřebuje totéž co tělo, když je přetížené: bezpečný prostor oddělený od ruchu světa.</p>
-          </div>
-          <div class="coje-card">
-            <div class="coje-card-icon">🧭</div>
-            <h4>Návrat k sobě</h4>
-            <p>Není to oprava člověka. Je to jemný průzkum vnitřní krajiny. Více porozumění, méně tlaku.</p>
-          </div>
+  <!-- ABOUT -->
+  <section id="omne">
+    <div class="section-inner">
+    <div class="omne-top">
+      <div>
+        <p class="section-label">o mně</p>
+        <h2 class="section-heading">Kdø jsem?</h2>
+        <p class="omne-bio">Jsem Kateřina Fibichová — psycholožka, psychoterapeutka ve výcviku a kandidátní členka ČAP. Působím v centrech Elpira, Kind Place a SŠ Scio Holešovice. Provázím děti, dospívající i dospělé turbulentním obdobím a společně hledáme cesty vpřed.</p>
+        <div class="omne-tags">
+          <span class="tag">KBT výcvik</span>
+          <span class="tag">děti & dospívající</span>
+          <span class="tag">CZ & EN</span>
+          <span class="tag">online i osobně</span>
         </div>
       </div>
+      <div class="omne-photo" aria-hidden="true">
+        <svg width="60%" height="60%" viewBox="0 0 100 100" fill="none">
+        </svg>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">hodin<br>s klienty</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">hodin<br>vzdělávání</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">hodin individuální<br>terapie</div>
+      </div>
+    </div>
+
+    <h3 class="kvalif-heading">Cø mě kvalifikuje<br>prø práci terapeuta?</h3>
+    <div class="kvalif-grid">
+      <div>
+        <p class="kvalif-col-label">vzdělání</p>
+        <ul class="kvalif-list">
+          <li>Mgr. jednooborová psychologie, 2025</li>
+          <li>KBT výcvik — ODYSSEA, 5 let (3. ročník), certifikován ČPtS & ČAP</li>
+          <li>Psycholog ve zdravotnictví — IPVZ, 2025</li>
+          <li>Kandidátní členka České asociace pro psychoterapii</li>
+        </ul>
+      </div>
+      <div>
+        <p class="kvalif-col-label">praxe & kurzy</p>
+        <ul class="kvalif-list">
+          <li>Emoční první pomoc — Emotion Aid®, 30 h</li>
+          <li>Krizová intervence — PVŠPS, 36 h</li>
+          <li>Sebepoškozování u dětí a dospívajících, 8 h</li>
+          <li>Praxe: PN Bohnice, VFN, FN Motol, NÚDZ a další</li>
+          <li>Pracuji pod supervizí, navštěvuji vlastní terapii</li>
+        </ul>
+      </div>
+    </div>
     </div>
   </section>
 
-  <!-- ===== KDO JSEM ===== -->
-  <section id="kdo-jsem" class="section">
-    <div class="container">
-      <div class="kdojsem-grid">
-        <div class="animate-in">
-          <div class="photo-placeholder">
-            <div class="photo-placeholder-icon">🌸</div>
-            <span>foto Kateřiny</span>
-          </div>
+  <!-- MEDIA & TESTIMONIALS -->
+  <section id="reference">
+    <div class="section-inner">
+    <h2 class="section-heading" style="padding-bottom: 2rem;">V médiích & reference</h2>
+
+    <p class="section-label">mediální výstupy</p>
+    <div class="media-grid">
+
+      <a class="media-card" href="https://tn.nova.cz/video/11081-tn-live-do-hloubky/507730-deti-s-adhd-mohou-byt-casteji-nastvane-a-podrazdene-rika-psycholozka-katerina-fibichova" 
+         target="_blank" rel="noopener noreferrer">
+        <div class="media-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <image href="./tn_cz.png" width="320" height="180" preserveAspectRatio="xMidYMid slice"/>
+            <!-- <rect width="320" height="180"  fill=url('./tn_cz.png')"#1a1a2e"/> -->
+            <rect x="20" y="20" width="60" height="28" rx="4" fill="#e63946"/>
+            <text x="50" y="39" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="white" text-anchor="middle">TN.cz</text>
+
+          </svg>
         </div>
-        <div class="kdojsem-text animate-in">
-          <div class="section-label">
-            <div class="deco-square"></div>
-            o mně
-          </div>
-          <h2>Kdø jsem?</h2>
-          <p>Moje jméno je <strong>Kateřina Fibichová</strong>. Jsem psycholožka, psychoterapeutka ve výcviku a psycholožka ve zdravotnictví. Jsem kandidátní členkou ČAP.</p>
-          <p>Aktuálně působím v dětském psychologickém a diagnostickém centru <strong>Elpira</strong>, centru dětské psychologie <strong>Kind Place</strong> a ve <strong>SŠ Scio Holešovice</strong>.</p>
-          <p>Ve své praxi se setkávám nejčastěji s dětskými, dospívajícími i dospělými klienty, které provázím turbulentním obdobím a společně nacházíme cesty, kterými se vydat. Kromě terapeutické práce se zabývám také holistickým přístupem ke zdraví, obtížemi spojenými s menstruačním cyklem a vzděláváním.</p>
-          <p>Ve volném čase utíkám za západy slunce do hor, za oceánskými vlnami a za vůní filtrované kávy v milované Skandinávii.</p>
-          <div class="kdojsem-tags">
-            <span class="tag">děti &amp; dospívající</span>
-            <span class="tag">dospělí</span>
-            <span class="tag">česky &amp; anglicky</span>
-            <span class="tag">osobně &amp; online</span>
-            <span class="tag">holistický přístup</span>
-            <span class="tag">menstruační cyklus</span>
-            <span class="tag">vzdělávání</span>
-          </div>
-          <div class="kdojsem-badges">
-            <div class="badge"><div class="badge-dot"></div> Kandidátní člen ČAP</div>
-            <div class="badge"><div class="badge-dot"></div> KBT výcvik – ODYSSEA</div>
-            <div class="badge"><div class="badge-dot"></div> Psycholog ve zdravotnictví</div>
-          </div>
+        <div class="media-body">
+          <p class="media-title">Děti s ADHD mohou být častěji naštvané a podrážděné</p>
+        </div>
+      </a>
+
+      <a class="media-card" href="#">
+        <div class="media-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="320" height="180" fill="#1b1b1b"/>
+            <rect x="20" y="20" width="90" height="28" rx="4" fill="#c8a951"/>
+            <text x="65" y="39" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#1b1b1b" text-anchor="middle">RESPEKT</text>
+            <rect x="20" y="70" width="200" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
+            <rect x="20" y="86" width="170" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+          </svg>
+        </div>
+        <div class="media-body">
+          <p class="media-title">Odklad nástupu do první třídy? To bude vzácnost</p>
+        </div>
+      </a>
+
+      <a class="media-card" href="#">
+        <div class="media-thumb">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="320" height="180" fill="#0a1628"/>
+            <rect x="20" y="20" width="70" height="28" rx="4" fill="#ff6b00"/>
+            <text x="55" y="39" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="white" text-anchor="middle">NOVA</text>
+            <rect x="20" y="70" width="200" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
+            <rect x="20" y="86" width="150" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+          </svg>
+        </div>
+        <div class="media-body">
+          <p class="media-title">Narůstá počet dětí s poruchou pozornosti?</p>
+        </div>
+      </a>
+
+    </div>
+
+    <hr class="ref-divider"/>
+
+    <p class="section-label">co říkají klienti</p>
+    <div class="cit-grid">
+
+      <div class="cit-card">
+        <div class="cit-mark" aria-hidden="true">"</div>
+        <p class="cit-text">Kateřina má úžasnou schopnost naslouchat bez hodnocení. Po prvním sezení jsem věděla, že jsem na správném místě.</p>
+        <div class="cit-author">
+          <div class="cit-avatar" aria-hidden="true">K.M.</div>
+          <span class="cit-name">K. M., 16 let</span>
         </div>
       </div>
+
+      <div class="cit-card">
+        <div class="cit-mark" aria-hidden="true">"</div>
+        <p class="cit-text">Konečně jsem pochopila, proč reaguji tak jak reaguji. Pomohla mi vidět věci jinak, bez tlaku a spěchu.</p>
+        <div class="cit-author">
+          <div class="cit-avatar" aria-hidden="true">T.N.</div>
+          <span class="cit-name">T. N., 14 let</span>
+        </div>
+      </div>
+
+      <div class="cit-card">
+        <div class="cit-mark" aria-hidden="true">"</div>
+        <p class="cit-text">Dcera se po pár sezeních otevřela způsobem, který jsem u ní dlouho neviděla. Jsme obě vděčné.</p>
+        <div class="cit-author">
+          <div class="cit-avatar" aria-hidden="true">L.H.</div>
+          <span class="cit-name">L. H., maminka</span>
+        </div>
+      </div>
+
+    </div>
     </div>
   </section>
 
-  <!-- ===== CO NABÍZÍM ===== -->
-  <section id="co-nabizim" class="section">
-    <div class="container">
-      <div class="nabizim-header animate-in">
-        <div class="section-label">
-          <div class="deco-square"></div>
-          služby
-        </div>
-        <h2>Cø nabízím</h2>
-      </div>
-      <div class="nabizim-grid">
-        <div class="service-card animate-in">
-          <div class="service-icon">🤝</div>
-          <h3>Individuální poradenství</h3>
-          <p>Pro děti, dospívající i dospělé. Česky i anglicky. Osobně i online. Společně nacházíme cesty, jak se vydat dál.</p>
-          <div class="service-card-tag">50 min · 1 500 Kč</div>
-        </div>
-        <div class="service-card animate-in">
-          <div class="service-icon">🆘</div>
-          <h3>Krizová intervence</h3>
-          <p>Rychlá a funkční podpora v akutní krizi. Objednání do 24 hodin. Jsem tu, když to nejde odložit.</p>
-          <div class="service-card-tag urgent">50 min · 1 700 Kč</div>
-        </div>
-        <div class="service-card animate-in">
-          <div class="service-icon">📚</div>
-          <h3>Vzdělávání a konzultace</h3>
-          <p>V oblasti duševního zdraví, školní psychologie a specifických poruch učení. Přednášky, workshopy, odborné konzultace.</p>
-          <div class="service-card-tag">dle domluvy</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-inner">
+    <h2 class="section-heading">Nejčastější øtázky</h2>
+    <p class="section-sub">Pár věcí, které si lidé nejčastěji říkají před prvním krokem</p>
 
-  <!-- ===== KVALIFIKACE ===== -->
-  <section id="kvalifikace" class="section">
-    <div class="container">
-      <div class="animate-in" style="margin-bottom:48px">
-        <div class="section-label">
-          <div class="deco-square"></div>
-          vzdělání &amp; výcvik
-        </div>
-        <h2>Cø mě kvalifikuje<br>prø práci terapeuta?</h2>
-      </div>
-      <div class="kval-grid">
-        <div class="kval-block animate-in">
-          <h3><span class="deco-square deco-square-lg"></span> Vzdělání &amp; výcvik</h3>
-          <ul class="kval-list">
-            <li>
-              <div class="deco-square"></div>
-              <div>
-                <strong>Mgr. jednooborová psychologie, 2025</strong>
-                Studium jednooborové psychologie
-              </div>
-            </li>
-            <li>
-              <div class="deco-square"></div>
-              <div>
-                <strong>KBT výcvik – ODYSSEA (3. ročník)</strong>
-                Komplexní pětiletý psychoterapeutický výcvik v Kognitivně behaviorální terapii. Certifikován ČPtS, ČLS JEP, ČAP
-              </div>
-            </li>
-            <li>
-              <div class="deco-square"></div>
-              <div>
-                <strong>Kurz Psycholog ve zdravotnictví – IPVZ, 2025</strong>
-                Specializační vzdělávání pro psychology ve zdravotnictví
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="kval-block animate-in">
-          <h3><span class="deco-square deco-square-lg"></span> Další vzdělávání</h3>
-          <ul class="kval-list">
-            <li>
-              <div class="deco-square"></div>
-              <div>Emoční první pomoc – Emotion Aid®, 30h</div>
-            </li>
-            <li>
-              <div class="deco-square"></div>
-              <div>Kurz mindfulness – NÚDZ, 12h</div>
-            </li>
-            <li>
-              <div class="deco-square"></div>
-              <div>Kurz práce na pískovišti s dětmi – Terapie pod Špilberkem, 16h</div>
-            </li>
-            <li>
-              <div class="deco-square"></div>
-              <div>Psychologická krizová a posttraumatická intervence – PVŠPS, 36h</div>
-            </li>
-            <li>
-              <div class="deco-square"></div>
-              <div>Sebevražedné jednání a sebepoškozování u dětí a dospívajících, 8h</div>
-            </li>
-            <li>
-              <div class="deco-square"></div>
-              <div>Krizová intervence ve školním prostředí – Vigvam, 8h</div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="kval-praxe animate-in">
-        <h3><span class="deco-square deco-square-lg"></span> Klinická praxe</h3>
-        <p style="font-size:0.9rem;margin-bottom:12px">Zkušenosti jsem čerpala na psychiatrickém/klinicko-psychologickém oddělení v:</p>
-        <div class="praxe-tags">
-          <span class="praxe-tag">PN Bohnice</span>
-          <span class="praxe-tag">VFN</span>
-          <span class="praxe-tag">ÚVN</span>
-          <span class="praxe-tag">FN Motol</span>
-          <span class="praxe-tag">KNL Liberec</span>
-          <span class="praxe-tag">Věznice Světlá nad Sázavou</span>
-          <span class="praxe-tag">MRP Kladno</span>
-          <span class="praxe-tag">NÚDZ</span>
-        </div>
-        <div class="supervize-note">
-          Jsem kandidátním členem České asociace pro psychoterapii. Pracuji pod odbornou supervizí a navštěvuji vlastní individuální a skupinovou terapii.
-        </div>
-      </div>
-    </div>
-  </section>
+    <div class="faq-list" id="faqList">
 
-  <!-- ===== PR / REFERENCE ===== -->
-  <section id="pr" class="section">
-    <div class="container">
-      <div class="pr-header animate-in">
-        <div class="section-label">
-          <div class="deco-square"></div>
-          důvěryhodnost
-        </div>
-        <h2>Média &amp; workshopy</h2>
-      </div>
-      <div class="pr-grid">
-        <div class="pr-block animate-in">
-          <h3><span class="deco-square deco-square-lg"></span> Média</h3>
-          <div class="media-list">
-            <div class="media-item">
-              <div class="media-logo">📺</div>
-              <div class="media-info">
-                <strong>TN.cz – Do Hloubky</strong>
-                <span>Děti s ADHD mohou být častěji naštvané a podrážděné</span>
-              </div>
-            </div>
-            <div class="media-item">
-              <div class="media-logo">🌅</div>
-              <div class="media-info">
-                <strong>Snídaně s Novou</strong>
-                <span>Narůstá počet dětí s poruchou pozornosti?</span>
-              </div>
-            </div>
-            <div class="media-item">
-              <div class="media-logo">📰</div>
-              <div class="media-info">
-                <strong>Týdeník Respekt</strong>
-                <span>Odklad nástupu do první třídy? To bude vzácnost</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pr-block animate-in">
-          <h3><span class="deco-square deco-square-lg"></span> Workshopy &amp; přednášky</h3>
-          <div class="workshop-list">
-            <div class="workshop-item">
-              <div class="deco-square"></div>
-              Workshop první psychické pomoci pro pedagogy – SŠ Scio Holešovice
-            </div>
-            <div class="workshop-item">
-              <div class="deco-square"></div>
-              Workshop první psychické pomoci – ZŠ TipToes
-            </div>
-            <div class="workshop-item">
-              <div class="deco-square"></div>
-              Workshop první psychické pomoci – ZŠ Basis school
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="references-row animate-in">
-        <h3><span class="deco-square deco-square-lg"></span> Co říkají klienti</h3>
-        <div class="ref-cards">
-          <div class="ref-card ref-placeholder">
-            <div class="ref-quote-mark">"</div>
-            <p class="ref-text">Kateřina mi pomohla najít cestu zpět k sobě. Její přístup je laskavý, ale zároveň velmi profesionální.</p>
-            <div class="ref-author">— klient/ka, dospělý</div>
-          </div>
-          <div class="ref-card ref-placeholder">
-            <div class="ref-quote-mark">"</div>
-            <p class="ref-text">Konečně jsem našla psycholožku, u které se cítím bezpečně. Sezení mi dávají smysl a vidím pokrok.</p>
-            <div class="ref-author">— klient/ka, dospívající</div>
-          </div>
-          <div class="ref-card ref-placeholder">
-            <div class="ref-quote-mark">"</div>
-            <p class="ref-text">Díky Kateřině jsem lépe porozuměl svým emocím a naučil se s nimi pracovat v každodenním životě.</p>
-            <div class="ref-author">— klient/ka, dospělý</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FAQ ===== -->
-  <section id="faq" class="section">
-    <div class="container">
-      <div class="animate-in" style="margin-bottom:0">
-        <div class="section-label">
-          <div class="deco-square" style="background:rgba(255,255,255,0.5)"></div>
-          nejčastější dotazy
-        </div>
-        <h2>Nejčastější øtázky</h2>
-      </div>
-      <div class="faq-grid" id="faqGrid">
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Jsem na tom opravdu tak špatně?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Tuhle otázku si klade většina lidí, kteří o terapii uvažují. Není velkého a malého problému. Každý z nich stojí za pozornost. Pokud cítíte, že se trápíte, v něčem se opakovaně cyklíte, nebo chcete věcem lépe porozumět, pak je pro vás terapie to pravé.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Jak často mám chodit?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Na začátku se obvykle setkáváme 1× týdně, aby měla práce kontinuitu. Frekvenci ale vždy přizpůsobujeme vaší situaci a možnostem.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Jak dlouho to trvá?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Jedno terapeutické setkání trvá zpravidla 50 minut. Někdy stačí pár setkání k vyřešení konkrétního tématu, jindy jde o delší proces. Délka spolupráce se odvíjí od vašich potřeb a cílů. Krizová intervence je zpravidla plánovaná na 3 setkání.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            S jakými tématy mohu přijít?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">S takovými, které vám běží hlavou večer před spaním. S takovými, o kterých se vám těžko mluví s blízkými. Se vztahy, úzkostí, stresem, vyčerpáním. S ADHD, OCD, poruchou příjmu potravy, rodičovským a výchovným trápením. Nebo jen s pocitem, že už takhle nechcete fungovat.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Jak funguje KBT?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Kognitivně-behaviorální terapie pracuje s propojením myšlenek, emocí a chování. Pomáhá porozumět tomu, co se v nás děje. Nejde jen o povídání — hledáme konkrétní způsoby, jak věci zkoušet jinak v běžném životě.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Dokážu si pomoct sám/sama – v čem má terapie přidanou hodnotu?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Sebepéče je důležitá. Terapie k ní přidává bezpečný prostor a vztah, odborný pohled zvenčí a vedení, které pomáhá odhalit slepá místa a zkoušet nové způsoby zvládání. Často právě tohle dělá ten největší rozdíl.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Kolik to stojí a jak zaplatím?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Ceny najdete v sekci ceník. Platba probíhá předem na číslo účtu. Pokud není platba připsána na účet do 48 hodin před rezervovaným termínem, setkání je stornováno (pokud není dohodnuto jinak).</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Spolupracujete s pojišťovnami?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Aktuálně nespolupracuji se zdravotními pojišťovnami. Služby jsou hrazeny přímou platbou. Některé pojišťovny mohou přispívat na psychoterapii v rámci nadstandardních programů – doporučuji ověřit u vaší pojišťovny.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Jak to probíhá?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">První setkání je úvodní konzultace, kde se vzájemně poznáme, probereme vaši situaci a domluvíme se na dalším postupu. Každé sezení trvá 50 minut. Pracujeme v bezpečném, důvěrném prostředí s jasně nastavenými hranicemi.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Jde to online? A v angličtině?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Ano, nabízím sezení jak osobně, tak online (video hovor). Pracuji také v angličtině – pokud vám je angličtina přirozenější nebo jste expat, neváhejte se ozvat.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Jak se objednat?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Nejjednodušší je využít online rezervační systém Reservio, nebo mi napsat e-mail či zprávu. Odpovím co nejdříve a domluvíme se na termínu, který vám vyhovuje.</div>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Co když na mě nemáte čas?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">Pokud aktuálně nemám volný termín, dám vám vědět a zařadím vás na čekací listinu. V případě akutní krize se vždy snažím najít řešení do 24 hodin. Nikdy vás nenechám bez odpovědi.</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CENÍK ===== -->
-  <section id="cenik" class="section">
-    <div class="container">
-      <div class="cenik-header animate-in">
-        <div class="section-label">
-          <div class="deco-square"></div>
-          transparentní ceny
-        </div>
-        <h2>Ceník</h2>
-      </div>
-      <div class="cenik-grid">
-        <div class="price-card animate-in">
-          <h3>Individuální poradenství</h3>
-          <p>Pro děti, dospívající i dospělé. Česky i anglicky. Osobně i online.</p>
-          <div class="price-amount">1 500 Kč</div>
-          <div class="price-duration">50 minut</div>
-        </div>
-        <div class="price-card animate-in">
-          <h3>Terapeutické pískoviště</h3>
-          <p>Expresivní terapeutická metoda vhodná zejména pro děti a dospívající.</p>
-          <div class="price-amount">1 500 Kč</div>
-          <div class="price-duration">50 minut</div>
-        </div>
-        <div class="price-card featured animate-in">
-          <h3>Krizová intervence</h3>
-          <p>Rychlá podpora v akutní krizi. Objednání do 24 hodin.</p>
-          <div class="price-amount">1 700 Kč</div>
-          <div class="price-duration">50 minut</div>
-        </div>
-        <div class="price-card animate-in">
-          <h3>Párová a rodinná terapie</h3>
-          <p>Práce se vztahovými tématy, komunikací a rodinnou dynamikou.</p>
-          <div class="price-amount">1 700 Kč</div>
-          <div class="price-duration">70 minut</div>
-        </div>
-        <div class="price-card-domluva animate-in">
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jsem na tom opravdu tak špatně?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
           <div>
-            <h3>Přednášky, workshopy &amp; odborné konzultace</h3>
-            <p>Vzdělávání v oblasti duševního zdraví, školní psychologie a specifických poruch učení. Cena dle rozsahu a obsahu.</p>
-          </div>
-          <a href="#kontakt" class="btn btn-outline-dark" style="flex-shrink:0">Domluvit se</a>
-        </div>
-      </div>
-      <div class="cenik-notes">
-        <div class="cenik-note animate-in">
-          <div class="cenik-note-icon">⏰</div>
-          <div>
-            <h4>Storno podmínky</h4>
-            <p>Změna termínu nebo zrušení sezení je možné nejpozději do 48 hodin předem. Při pozdějším zrušení je nutné uhradit plnou cenu sezení.</p>
-          </div>
-        </div>
-        <div class="cenik-note animate-in">
-          <div class="cenik-note-icon">💳</div>
-          <div>
-            <h4>Platba předem</h4>
-            <p>Platba probíhá předem na číslo účtu. Pokud není platba připsána do 48 hodin před termínem, sezení je stornováno (pokud není dohodnuto jinak).</p>
+            <p>Tuhle otázku si klade většina lidí, kteří o terapii uvažují. Není velkého a malého problému — každý z nich stojí za pozornost. Pokud cítíte, že se trápíte, v něčem se opakovaně cyklíte nebo chcete věcem lépe porozumět, pak je pro vás terapie to pravé.</p>
           </div>
         </div>
       </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jak často mám chodit?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div>
+            <p>Na začátku se obvykle setkáváme 1× týdně, aby měla práce kontinuitu. Frekvenci ale vždy přizpůsobujeme vaší situaci a možnostem.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jak dlouho to trvá?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div>
+            <p>Jedno sezení trvá zpravidla 50 minut. Někdy stačí pár setkání k vyřešení konkrétního tématu, jindy jde o delší proces. Délka spolupráce se odvíjí od vašich potřeb a cílů.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">S jakými tématy mohu přijít?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div>
+            <p>S takovými, která vám běží hlavou večer před spaním. Se vztahy, úzkostí, stresem, vyčerpáním, ADHD, OCD, poruchou příjmu potravy nebo jen s pocitem, že už takhle nechcete fungovat.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jak funguje KBT?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div>
+            <p>Kognitivně-behaviorální terapie pracuje s propojením myšlenek, emocí a chování. Nejde jen o povídání — hledáme konkrétní způsoby, jak věci zkoušet jinak v běžném životě.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jde to online? A v angličtině?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div>
+            <p>Ano k obojímu. Setkání probíhají osobně i online, v češtině i angličtině — záleží na tom, co vám lépe vyhovuje.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Spolupracujete s pojišťovnami?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div>
+            <p>Aktuálně neposkytujeme péči hrazenou pojišťovnou. Služby jsou hrazeny soukromě. Více informací najdete v sekci ceník.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn">
+          <span class="faq-q">Jak se objednat?</span>
+          <span class="faq-icon"><svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 5l5 5 5-5" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <div>
+            <p>Nejjednodušeji přes kontaktní formulář nebo přes rezervační systém Reservio. Ozvete se — domluví se zbytek.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
     </div>
   </section>
 
-  <!-- ===== KONTAKT ===== -->
-  <section id="kontakt" class="section">
-    <div class="kontakt-bg-sq kontakt-bg-sq-1"></div>
-    <div class="kontakt-bg-sq kontakt-bg-sq-2"></div>
-    <div class="kontakt-bg-sq kontakt-bg-sq-3"></div>
-    <div class="kontakt-bg-sq kontakt-bg-sq-4"></div>
-    <div class="container">
-      <div class="section-label">
-        <div class="deco-square" style="background:rgba(255,255,255,0.5)"></div>
-        kontakt
+  <!-- PRICING -->
+  <section id="cenik">
+    <div class="section-inner">
+    <h2 class="section-heading" style="padding-bottom: 2.5rem;">Ceník</h2>
+
+    <div class="cenik-grid">
+      <div class="cenik-card">
+        <div class="cenik-icon">💬</div>
+        <h3 class="cenik-name">Individuální poradenství</h3>
+        <p class="cenik-duration">50 minut</p>
+        <div class="cenik-price"><span class="price-num">1 500</span><span class="price-unit">Kč</span></div>
       </div>
-      <h2 class="kontakt-title">Pojďme do toho.<br><em>Spøleně.</em></h2>
-      <p class="kontakt-subtitle">Udělejte první krok. Stačí napsat nebo kliknout.</p>
-      <div class="kontakt-cta">
-        <a href="https://www.reservio.com" target="_blank" rel="noopener" class="btn btn-primary">Rezervovat termín</a>
-        <a href="mailto:hello@reallygreatsite.com" class="btn btn-outline-white">Napsat e-mail</a>
+      <div class="cenik-card">
+        <div class="cenik-icon">⚡</div>
+        <h3 class="cenik-name">Krizová intervence</h3>
+        <p class="cenik-duration">50 minut</p>
+        <div class="cenik-price"><span class="price-num">1 700</span><span class="price-unit">Kč</span></div>
       </div>
-      <div class="kontakt-info-grid">
-        <div class="kontakt-info-item">
-          <div class="kontakt-info-icon">📞</div>
-          <div class="kontakt-info-label">Telefon</div>
-          <div class="kontakt-info-value">123-456-789</div>
-        </div>
-        <div class="kontakt-info-item">
-          <div class="kontakt-info-icon">✉️</div>
-          <div class="kontakt-info-label">E-mail</div>
-          <div class="kontakt-info-value">hello@reallygreatsite.com</div>
-        </div>
-        <div class="kontakt-info-item">
-          <div class="kontakt-info-icon">🏢</div>
-          <div class="kontakt-info-label">IČO</div>
-          <div class="kontakt-info-value">placeholder</div>
-        </div>
-        <div class="kontakt-info-item">
-          <div class="kontakt-info-icon">📍</div>
-          <div class="kontakt-info-label">Adresa</div>
-          <div class="kontakt-info-value">Praha, CZ</div>
+      <div class="cenik-card">
+        <div class="cenik-icon">🤝</div>
+        <h3 class="cenik-name">Párová a rodinná terapie</h3>
+        <p class="cenik-duration">70 minut</p>
+        <div class="cenik-price"><span class="price-num">1 700</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-icon">🏖</div>
+        <h3 class="cenik-name">Terapeutické pískoviště</h3>
+        <p class="cenik-duration">50 minut</p>
+        <div class="cenik-price"><span class="price-num">1 500</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card muted">
+        <div class="cenik-icon">🎓</div>
+        <h3 class="cenik-name">Přednášky & workshopy</h3>
+        <p class="cenik-duration">dle rozsahu</p>
+        <div class="cenik-price"><span class="price-num">dle domluvy</span></div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="note-box">
+        <span class="note-title">Platba předem</span>
+        <p class="note-highlight">Převodem na účet č. XXX</p>
+        <p class="note-text">Platbu je nutné uhradit nejpozději 48 hodin před rezervovaným termínem. Pokud platba není připsána včas, sezení je stornováno.</p>
+      </div>
+      <div class="note-box">
+        <span class="note-title">Storno podmínky</span>
+        <p class="note-text">Změnu nebo zrušení termínu je možné nejpozději <strong style="font-weight:400;color:var(--text-plum);">48 hodin předem</strong>. Při pozdějším zrušení je nutné uhradit plnou cenu sezení.</p>
+      </div>
+    </div>
+
+    <div class="pojistovny-box">
+      <span class="note-title">Spolupráce s pojišťovnami</span>
+      <div class="pojistovny-top">
+        <p class="pojistovny-text">Jsem členkou České asociace pro psychoterapii — najdete mě na seznamu pojišťoven přispívajících na psychoterapeutická sezení. Výši příspěvku si ověřte u své pojišťovny nebo to probereme spolu.</p>
+        <div class="pojistovny-pills">
+          <a class="p-pill" href="#">VZP</a>
+          <a class="p-pill" href="#">ZPMV</a>
+          <a class="p-pill" href="#">OZP</a>
+          <a class="p-pill" href="#">ZPŠ</a>
+          <a class="p-pill" href="#">RBP</a>
+          <a class="p-pill" href="#">ČPZ</a>
         </div>
       </div>
-      <div class="social-links">
-        <a href="#" class="social-link" aria-label="Instagram">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        </a>
-        <a href="#" class="social-link" aria-label="Facebook">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-      </div>
+    </div>
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- CONTACT -->
+  <section id="kontakt">
+    <div class="section-inner">
+    <div class="kontakt-heading-wrap">
+      <h2 class="kontakt-heading">Pojďme do toho.<br>Spølečně.</h2>
+    </div>
+
+    <div class="kontakt-grid">
+
+      <div class="form-card">
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Jméno</label>
+            <input id="name" type="text" placeholder="Jana Nováková"/>
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" type="email" placeholder="vas@email.cz"/>
+          </div>
+        </div>
+        <div class="field">
+          <label for="topic">O co se jedná?</label>
+          <div class="select-wrap">
+            <select id="topic">
+              <option>Individuální terapie</option>
+              <option>Krizová intervence</option>
+              <option>Párová a rodinná terapie</option>
+              <option>Vzdělávání a konzultace</option>
+              <option>Jiné</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="format">Forma setkání</label>
+          <div class="select-wrap">
+            <select id="format">
+              <option>Osobně</option>
+              <option>Online</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">Zpráva</label>
+          <textarea id="message" placeholder="Stručně napište, co vás trápí..."></textarea>
+        </div>
+        <button class="submit-btn" type="button">Odeslat zprávu</button>
+      </div>
+
+      <div class="right-col">
+        <div class="info-row">
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6c0-2.5-2-4.5-4.5-4.5z"/>
+                <circle cx="8" cy="6" r="1.5"/>
+              </svg>
+            </div>
+            <span class="info-card-title">Adresa</span>
+            <p class="info-card-text">Bude doplněno</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 4l6 5 6-5"/>
+                <rect x="1" y="3" width="14" height="10" rx="2"/>
+              </svg>
+            </div>
+            <span class="info-card-title">Kontakt</span>
+            <p class="info-card-text">katerina@psycho.cz<br>+420 777 123 456</p>
+          </div>
+        </div>
+
+        <div class="map-card">
+          <svg class="map-bg" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="400" height="160" fill="#d4c8cc"/>
+            <rect x="0" y="70" width="400" height="12" fill="#c4b8bc" rx="2"/>
+            <rect x="0" y="95" width="400" height="8" fill="#c4b8bc" rx="2"/>
+            <rect x="80" y="0" width="10" height="160" fill="#c4b8bc" rx="2"/>
+            <rect x="180" y="0" width="14" height="160" fill="#c4b8bc" rx="2"/>
+            <rect x="290" y="0" width="8" height="160" fill="#c4b8bc" rx="2"/>
+            <rect x="30" y="20" width="60" height="40" rx="6" fill="#bfb0b5"/>
+            <rect x="150" y="30" width="80" height="30" rx="6" fill="#bfb0b5"/>
+            <rect x="260" y="15" width="100" height="50" rx="6" fill="#bfb0b5"/>
+            <circle cx="200" cy="80" r="8" fill="#FF3D9A"/>
+            <circle cx="200" cy="80" r="4" fill="#fff"/>
+          </svg>
+          <button class="map-btn" type="button">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+              <path d="M6 1l1.5 3h3l-2.5 2 1 3L6 7.5 3 9l1-3L1.5 4h3z"/>
+            </svg>
+            Zobrazit trasu
+          </button>
+        </div>
+
+        <div class="bottom-row">
+          <div class="social-icons">
+            <a class="social-icon" href="#" aria-label="Instagram">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#2a1a20" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="12" height="12" rx="3"/>
+                <circle cx="8" cy="8" r="2.5"/>
+                <circle cx="11.2" cy="4.8" r="0.6" fill="#2a1a20" stroke="none"/>
+              </svg>
+            </a>
+            <a class="social-icon" href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#2a1a20" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="12" height="12" rx="2"/>
+                <path d="M5 6v5M5 4.5v.01M8 11V8.5c0-1 .5-2.5 2.5-2.5V11"/>
+              </svg>
+            </a>
+          </div>
+          <a class="reservio-btn" href="#">
+            <svg viewBox="0 0 14 14" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="1" y="2" width="12" height="11" rx="2"/>
+              <path d="M1 6h12M4 1v2M10 1v2"/>
+            </svg>
+            Rezervovat termín
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <p>© 2025 psychø – Kateřina Fibichová &nbsp;·&nbsp; <a href="mailto:hello@reallygreatsite.com">hello@reallygreatsite.com</a></p>
+    <div class="footer-inner">
+      <span>psychø — Mgr. Kateřina Fibichová</span>
+      <span>IČO: XXXXXXXX</span>
+      <span>© 2025</span>
+    </div>
   </footer>
 
-  <!-- ===== JAVASCRIPT ===== -->
+  <!-- BACK TO TOP -->
+  <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Zpět nahoru">
+    <svg viewBox="0 0 16 16" fill="none" stroke="#FF3D9A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M8 12V4M4 8l4-4 4 4"/>
+    </svg>
+  </button>
+
   <script>
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+    // ─── ANIMATED GRADIENT HERO ───
+    (function () {
+      const canvas = document.getElementById('heroCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const stops = [
+        { r: 196, g: 160, b: 220 },
+        { r: 230, g: 130, b: 160 },
+        { r: 242, g: 160, b: 130 },
+        { r: 240, g: 200, b: 120 },
+        { r: 215, g: 140, b: 200 },
+        { r: 200, g: 100, b: 170 },
+      ];
+
+      let t = 0;
+
+      function lerp(a, b, f) {
+        return a + (b - a) * f;
+      }
+
+      function lerpColor(c1, c2, f) {
+        return {
+          r: Math.round(lerp(c1.r, c2.r, f)),
+          g: Math.round(lerp(c1.g, c2.g, f)),
+          b: Math.round(lerp(c1.b, c2.b, f)),
+        };
+      }
+
+      function getColor(phase) {
+        const total = stops.length;
+        const scaled = (((phase % 1) + 1) % 1) * total;
+        const idx = Math.floor(scaled) % total;
+        const frac = scaled - Math.floor(scaled);
+        return lerpColor(stops[idx], stops[(idx + 1) % total], frac);
+      }
+
+      function drawGradient() {
+        const w = canvas.offsetWidth;
+        const h = canvas.offsetHeight;
+        canvas.width = w;
+        canvas.height = h;
+        t += 0.0011;
+
+        const tl = getColor(t);
+        const tr = getColor(t + 0.18);
+        const br = getColor(t + 0.36);
+        const bl = getColor(t + 0.54);
+
+        const imageData = ctx.createImageData(w, h);
+        const data = imageData.data;
+
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            const fx = x / w;
+            const fy = y / h;
+            const top = lerpColor(tl, tr, fx);
+            const bot = lerpColor(bl, br, fx);
+            const col = lerpColor(top, bot, fy);
+            const i = (y * w + x) * 4;
+            data[i]     = col.r;
+            data[i + 1] = col.g;
+            data[i + 2] = col.b;
+            data[i + 3] = 255;
+          }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+        requestAnimationFrame(drawGradient);
+      }
+
+      drawGradient();
+    }());
+
+    // ─── FAQ ACCORDION ───
+    document.getElementById('faqList').addEventListener('click', function (e) {
+      const btn = e.target.closest('.faq-btn');
+      if (!btn) return;
+
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all open items
+      document.querySelectorAll('.faq-item.open').forEach(function (i) {
+        i.classList.remove('open');
+      });
+
+      // Open the clicked item if it was closed
+      if (!isOpen) {
+        item.classList.add('open');
       }
     });
 
-    // Mobile menu
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileClose = document.getElementById('mobileClose');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
-    mobileClose.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-    // Also close on CTA click in mobile menu
-    mobileMenu.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
+    // ─── BACK TO TOP VISIBILITY ───
+    window.addEventListener('scroll', function () {
+      const btn = document.getElementById('backToTop');
+      btn.classList.toggle('visible', window.scrollY > 400);
     });
 
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.closest('.faq-item');
-        const answer = item.querySelector('.faq-answer');
-        const isOpen = item.classList.contains('open');
+    // ─── REVEAL ON SCROLL (Intersection Observer) ───
+    (function () {
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Close all
-        document.querySelectorAll('.faq-item').forEach(i => {
-          i.classList.remove('open');
-          i.querySelector('.faq-answer').style.maxHeight = '0';
+      // Groups of sibling elements that should stagger
+      var staggerGroups = [
+        '.services-grid .service-card',
+        '.stats-row .stat',
+        '.cit-grid .cit-card',
+        '.media-grid .media-card',
+        '.cenik-grid .cenik-card',
+        '.faq-list',
+        '.info-grid .note-box',
+      ];
+
+      // Elements to reveal individually (no stagger)
+      var soloSelectors = [
+        '.section-heading',
+        '.section-sub',
+        '.section-label',
+        '.kontakt-heading',
+        '.kvalif-heading',
+        '.omne-bio',
+        '.omne-tags',
+        '.omne-photo',
+        '.kvalif-col-label',
+        '.kvalif-list',
+        '.pojistovny-box',
+        '.form-card',
+        '.right-col',
+        '.services-cta',
+      ];
+
+      // Add .reveal class to all target elements
+      soloSelectors.forEach(function (sel) {
+        document.querySelectorAll(sel).forEach(function (el) {
+          el.classList.add('reveal');
         });
-
-        // Open clicked if it was closed
-        if (!isOpen) {
-          item.classList.add('open');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
       });
-    });
 
-    // Scroll animations
-    const animateEls = document.querySelectorAll('.animate-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, 80);
-          observer.unobserve(entry.target);
-        }
+      // Add .reveal + data-delay to stagger groups
+      staggerGroups.forEach(function (sel) {
+        document.querySelectorAll(sel).forEach(function (el, i) {
+          el.classList.add('reveal');
+          el.setAttribute('data-delay', String(i + 1));
+        });
       });
-    }, { threshold: 0.12 });
 
-    animateEls.forEach(el => observer.observe(el));
+      // If reduced motion: immediately show everything
+      if (reducedMotion) {
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          el.classList.add('is-visible');
+        });
+        return;
+      }
 
-    // Staggered animation for grid children
-    document.querySelectorAll('.nabizim-grid .service-card, .cenik-grid .price-card, .ref-cards .ref-card').forEach((el, i) => {
-      el.style.transitionDelay = (i * 0.1) + 's';
-    });
+      // Intersection Observer
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px',
+      });
+
+      document.querySelectorAll('.reveal').forEach(function (el) {
+        observer.observe(el);
+      });
+    }());
   </script>
 </body>
 </html>
