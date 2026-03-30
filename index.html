@@ -179,7 +179,7 @@
     }
 
     .nav-links a {
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 300;
       color: var(--text-rose);
       text-decoration: none;
@@ -239,6 +239,7 @@
       width: 100%;
       height: 100%;
       z-index: 0;
+      image-rendering: pixelated;
     }
 
     .hero-grain {
@@ -261,20 +262,20 @@
 
     .hero-title {
       font-family: var(--font-serif);
-      font-size: clamp(64px, 12vw, 110px);
+      font-size: clamp(40px, 6vw, 64px);
       font-weight: 400;
       color: #fff;
       line-height: 0.95;
-      margin-bottom: 1.25rem;
+      margin-bottom: 3rem;
       letter-spacing: -0.01em;
     }
 
     .hero-subtitle {
-      font-size: clamp(14px, 2vw, 18px);
+      font-size: clamp(14px, 2vw, 24px);
       font-weight: 300;
       color: rgba(255, 255, 255, 0.85);
       letter-spacing: 0.05em;
-      margin-bottom: 6rem;
+      margin-bottom: 7rem;
     }
 
     .hero-cta {
@@ -283,8 +284,8 @@
       padding: 12px 32px;
       font-size: 20px;
       font-weight: 400;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.15);
+      color: var(--text-rose);
+      background: rgba(255, 255, 255, 0.30);
       cursor: pointer;
       backdrop-filter: blur(4px);
       text-decoration: none;
@@ -321,19 +322,19 @@
 
     /* ─── SERVICES ─── */
     #sluzby {
-      background: var(--cream);
+      background: #fff;
 
     }
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      gap: 80px;
       margin-bottom: 6rem;
     }
 
     .service-card {
-      background: #fff;
+      background: var(--pink-light);
       border-radius: var(--radius-card);
       overflow: hidden;
       border: 1px solid var(--border);
@@ -371,7 +372,7 @@
 
     /* ─── ABOUT ─── */
     #omne {
-      background: #fff;
+      background: var(--cream);
     }
 
     .omne-top {
@@ -432,7 +433,7 @@
     .stat {
       text-align: center;
       padding: 1.75rem 1rem;
-      background: var(--cream);
+      background: #fff;
       border-radius: var(--radius-sm);
     }
 
@@ -627,7 +628,7 @@
 
     /* ─── FAQ ─── */
     #faq {
-      background: #fff;
+      background: var(--cream);
     }
 
     .faq-list {
@@ -637,12 +638,12 @@
     .faq-item {
       border-bottom: 1px solid var(--border);
       border-radius: 8px;
-      transition: background 0.2s;
+      transition: background 0.25s;
     }
 
     .faq-item:hover,
     .faq-item.open {
-      background: var(--cream);
+      background: #fff;
     }
 
     .faq-btn {
@@ -663,7 +664,7 @@
       font-weight: 400;
       color: var(--text-plum);
       line-height: 1.4;
-      transition: color 0.2s;
+      transition: color 0.25s;
     }
 
     .faq-item:hover .faq-q,
@@ -680,13 +681,13 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: background 0.2s, border-color 0.2s;
+      transition: background 0.25s, border-color 0.25s;
     }
 
     .faq-icon svg {
       width: 14px;
       height: 14px;
-      transition: transform 0.3s;
+      transition: transform 0.25s;
     }
 
     .faq-item.open .faq-icon {
@@ -706,7 +707,7 @@
       display: grid;
       grid-template-rows: 0fr;
       overflow: hidden;
-      transition: grid-template-rows 0.5s ease;
+      transition: grid-template-rows 0.25s ease;
     }
 
     .faq-answer > div {
@@ -728,7 +729,7 @@
 
     /* ─── PRICING ─── */
     #cenik {
-      background: var(--cream);
+      background: #fff;
     }
 
     .cenik-grid {
@@ -739,7 +740,7 @@
     }
 
     .cenik-card {
-      background: #fff;
+      background: var(--cream);
       border-radius: var(--radius-card);
       padding: 2rem 1.75rem;
       border: 1px solid var(--border);
@@ -885,9 +886,33 @@
       color: #fff;
     }
 
+    .p-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      padding: 4px 10px;
+      background: var(--pink-light);
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+
+    .p-logo img {
+      height: 20px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .p-logo:hover {
+      background: #f5d8e8;
+      box-shadow: 0 2px 8px rgba(255, 61, 154, 0.15);
+    }
+
     /* ─── CONTACT ─── */
     #kontakt {
-      background: var(--cream);
+      background: fff;
     }
 
     .kontakt-heading-wrap {
@@ -1063,7 +1088,7 @@
     .map-card {
       background: #e8dde0;
       border-radius: var(--radius-sm);
-      height: 160px;
+      height: 280px;
       display: flex;
       align-items: flex-end;
       justify-content: flex-end;
@@ -1180,11 +1205,12 @@
 
     .footer-inner {
       max-width: var(--max-width);
+      font-size: 16px;
       margin: 0 auto;
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
     }
 
     /* ─── BACK TO TOP ─── */
@@ -1240,24 +1266,11 @@
       }
     }
 
-    /* Stagger delays applied via data-delay attribute in JS */
-    @media (prefers-reduced-motion: no-preference) {
-      .reveal[data-delay="1"] { transition-delay: 0.07s; }
-      .reveal[data-delay="2"] { transition-delay: 0.14s; }
-      .reveal[data-delay="3"] { transition-delay: 0.21s; }
-      .reveal[data-delay="4"] { transition-delay: 0.28s; }
-      .reveal[data-delay="5"] { transition-delay: 0.35s; }
-      .reveal[data-delay="6"] { transition-delay: 0.42s; }
-      .reveal[data-delay="7"] { transition-delay: 0.49s; }
-      .reveal[data-delay="8"] { transition-delay: 0.56s; }
-    }
-
     /* ── Card hover: lift + shadow ── */
     @media (prefers-reduced-motion: no-preference) {
       .service-card,
       .cit-card,
       .cenik-card,
-      .note-box,
       .info-card {
         transition:
           transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -1268,10 +1281,19 @@
       .service-card:hover,
       .cit-card:hover,
       .cenik-card:hover,
-      .note-box:hover,
       .info-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 32px rgba(255, 61, 154, 0.10);
+      }
+    }
+
+    /* ── Service card image zoom on hover ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .service-card .service-img {
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .service-card:hover .service-img {
+        transform: scale(1.07);
       }
     }
 
@@ -1432,7 +1454,6 @@
       .stats-row,
       .kvalif-grid,
       .kontakt-grid,
-      .info-grid,
       .info-row {
         grid-template-columns: 1fr;
       }
@@ -1463,8 +1484,8 @@
       <ul class="nav-links nav-middle">
         <li><a href="#omne">o mně</a></li>
         <li><a href="#sluzby">služby</a></li>
-        <li><a href="#faq">F&Qs</a></li>
         <li><a href="#cenik">ceník</a></li>
+        <li><a href="#faq">F&Qs</a></li>
       </ul>
       <div class="nav-right">
         <a href="#kontakt" class="nav-cta">chci se objednat</a>
@@ -1474,7 +1495,7 @@
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
+  <section id="hero" >
     <canvas id="heroCanvas"></canvas>
     <svg class="hero-grain" xmlns="http://www.w3.org/2000/svg">
       <filter id="noise">
@@ -1484,8 +1505,9 @@
       <rect width="100%" height="100%" filter="url(#noise)"/>
     </svg>
     <div class="hero-content">
-      <h1 class="hero-title">Ahøj,<br>jsem<br>Kateřina</h1>
-      <p class="hero-subtitle">psycholog a psychoterapeut</p>
+      <h1 class="hero-title">Mgr. Kateřina Fibichová<br><span style="font-size: 28px;">psycholožka a terapeutka</span></h1>
+      <!-- <h1 class="hero-title">Bezpečné místo<br>pro vaše příběhy.</h1> -->
+      <p class="hero-subtitle">Bezpečně místo <br>pro vaše příběhy</p>
       <a href="#kontakt" class="hero-cta">chci se objednat</a>
     </div>
     <button class="hero-scroll" onclick="document.getElementById('sluzby').scrollIntoView({behavior:'smooth'})" aria-label="Přejít na služby">
@@ -1495,15 +1517,76 @@
     </button>
   </section>
 
+    <!-- ABOUT -->
+  <section id="omne">
+    <div class="section-inner">
+    <div class="omne-top">
+      <div>
+        <p class="section-label">o mně</p>
+        <h2 class="section-heading">Kdø jsem?</h2>
+        <p class="omne-bio">Jsem Kateřina Fibichová — psycholožka, psychoterapeutka ve výcviku a kandidátní členka ČAP. Působím v centrech Elpira, Kind Place a SŠ Scio Holešovice. Provázím děti, dospívající i dospělé turbulentním obdobím a společně hledáme cesty vpřed.</p>
+        <div class="omne-tags">
+          <span class="tag">KBT výcvik</span>
+          <span class="tag">děti & dospívající</span>
+          <span class="tag">CZ & EN</span>
+          <span class="tag">online i osobně</span>
+        </div>
+      </div>
+      <div class="omne-photo" aria-hidden="true">
+        <svg width="60%" height="60%" viewBox="0 0 100 100" fill="none">
+        </svg>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">hodin<br>s klienty</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">hodin<br>vzdělávání</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">hodin individuální<br>terapie</div>
+      </div>
+    </div>
+
+    <h3 class="kvalif-heading">Cø mě kvalifikuje<br>prø práci terapeuta?</h3>
+    <div class="kvalif-grid">
+      <div>
+        <p class="kvalif-col-label">vzdělání</p>
+        <ul class="kvalif-list">
+          <li>Mgr. jednooborová psychologie, 2025</li>
+          <li>KBT výcvik — ODYSSEA, 5 let (3. ročník), certifikován ČPtS & ČAP</li>
+          <li>Psycholog ve zdravotnictví — IPVZ, 2025</li>
+          <li>Kandidátní členka České asociace pro psychoterapii</li>
+        </ul>
+      </div>
+      <div>
+        <p class="kvalif-col-label">praxe & kurzy</p>
+        <ul class="kvalif-list">
+          <li>Emoční první pomoc — Emotion Aid®, 30 h</li>
+          <li>Krizová intervence — PVŠPS, 36 h</li>
+          <li>Sebepoškozování u dětí a dospívajících, 8 h</li>
+          <li>Praxe: PN Bohnice, VFN, FN Motol, NÚDZ a další</li>
+          <li>Pracuji pod supervizí, navštěvuji vlastní terapii</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </section>
+
   <!-- SERVICES -->
   <section id="sluzby">
     <div class="section-inner">
     <h2 class="section-heading reveal">Cø nabízím</h2>
     <p class="section-sub reveal">Individuálně, v páru, online i osobně</p>
 
-    <div class="services-grid">
+    <div class="services-grid reveal">
 
-      <div class="service-card reveal">
+      <div class="service-card">
         <svg class="service-img" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
             <radialGradient id="sg1" cx="50%" cy="50%" r="70%">
@@ -1576,67 +1659,6 @@
 
     <div class="services-cta">
       <a href="#kontakt" class="btn-outline">odkaz na calendly</a>
-    </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="omne">
-    <div class="section-inner">
-    <div class="omne-top">
-      <div>
-        <p class="section-label">o mně</p>
-        <h2 class="section-heading">Kdø jsem?</h2>
-        <p class="omne-bio">Jsem Kateřina Fibichová — psycholožka, psychoterapeutka ve výcviku a kandidátní členka ČAP. Působím v centrech Elpira, Kind Place a SŠ Scio Holešovice. Provázím děti, dospívající i dospělé turbulentním obdobím a společně hledáme cesty vpřed.</p>
-        <div class="omne-tags">
-          <span class="tag">KBT výcvik</span>
-          <span class="tag">děti & dospívající</span>
-          <span class="tag">CZ & EN</span>
-          <span class="tag">online i osobně</span>
-        </div>
-      </div>
-      <div class="omne-photo" aria-hidden="true">
-        <svg width="60%" height="60%" viewBox="0 0 100 100" fill="none">
-        </svg>
-      </div>
-    </div>
-
-    <div class="stats-row">
-      <div class="stat">
-        <div class="stat-num">500+</div>
-        <div class="stat-label">hodin<br>s klienty</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">200+</div>
-        <div class="stat-label">hodin<br>vzdělávání</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">100+</div>
-        <div class="stat-label">hodin individuální<br>terapie</div>
-      </div>
-    </div>
-
-    <h3 class="kvalif-heading">Cø mě kvalifikuje<br>prø práci terapeuta?</h3>
-    <div class="kvalif-grid">
-      <div>
-        <p class="kvalif-col-label">vzdělání</p>
-        <ul class="kvalif-list">
-          <li>Mgr. jednooborová psychologie, 2025</li>
-          <li>KBT výcvik — ODYSSEA, 5 let (3. ročník), certifikován ČPtS & ČAP</li>
-          <li>Psycholog ve zdravotnictví — IPVZ, 2025</li>
-          <li>Kandidátní členka České asociace pro psychoterapii</li>
-        </ul>
-      </div>
-      <div>
-        <p class="kvalif-col-label">praxe & kurzy</p>
-        <ul class="kvalif-list">
-          <li>Emoční první pomoc — Emotion Aid®, 30 h</li>
-          <li>Krizová intervence — PVŠPS, 36 h</li>
-          <li>Sebepoškozování u dětí a dospívajících, 8 h</li>
-          <li>Praxe: PN Bohnice, VFN, FN Motol, NÚDZ a další</li>
-          <li>Pracuji pod supervizí, navštěvuji vlastní terapii</li>
-        </ul>
-      </div>
     </div>
     </div>
   </section>
@@ -1733,7 +1755,78 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+    <!-- PRICING -->
+  <section id="cenik">
+    <div class="section-inner">
+    <h2 class="section-heading" style="padding-bottom: 2.5rem;">Ceník</h2>
+
+    <div class="cenik-grid">
+      <div class="cenik-card">
+        <div class="cenik-icon">💬</div>
+        <h3 class="cenik-name">Individuální poradenství</h3>
+        <p class="cenik-duration">50 minut</p>
+        <div class="cenik-price"><span class="price-num">1 500</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-icon">⚡</div>
+        <h3 class="cenik-name">Krizová intervence</h3>
+        <p class="cenik-duration">50 minut</p>
+        <div class="cenik-price"><span class="price-num">1 700</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-icon">🤝</div>
+        <h3 class="cenik-name">Párová a rodinná terapie</h3>
+        <p class="cenik-duration">70 minut</p>
+        <div class="cenik-price"><span class="price-num">1 700</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card">
+        <div class="cenik-icon">🏖</div>
+        <h3 class="cenik-name">Terapeutické pískoviště</h3>
+        <p class="cenik-duration">50 minut</p>
+        <div class="cenik-price"><span class="price-num">1 500</span><span class="price-unit">Kč</span></div>
+      </div>
+      <div class="cenik-card muted">
+        <div class="cenik-icon">🎓</div>
+        <h3 class="cenik-name">Přednášky & workshopy</h3>
+        <p class="cenik-duration">dle rozsahu</p>
+        <div class="cenik-price"><span class="price-num">dle domluvy</span></div>
+      </div>
+    </div>
+
+    <div class="services-cta">
+      <a href="#kontakt" class="btn-outline" style="margin-bottom: 3rem;">Rezervovat termín</a>
+    </div>
+
+    <div class="info-grid">
+      <div class="note-box">
+        <span class="note-title">Platba předem</span>
+        <p class="note-highlight">Převodem na účet č. XXX</p>
+        <p class="note-text">Platbu je nutné uhradit nejpozději 48 hodin před rezervovaným termínem. Pokud platba není připsána včas, sezení je stornováno.</p>
+      </div>
+      <div class="note-box">
+        <span class="note-title">Storno podmínky</span>
+        <p class="note-text">Změnu nebo zrušení termínu je možné nejpozději <strong style="font-weight:400;color:var(--text-plum);">48 hodin předem</strong>. Při pozdějším zrušení je nutné uhradit plnou cenu sezení.</p>
+      </div>
+    </div>
+
+    <div class="pojistovny-box">
+      <span class="note-title">Spolupráce s pojišťovnami</span>
+      <div class="pojistovny-top">
+        <p class="pojistovny-text">Jsem členkou České asociace pro psychoterapii — najdete mě na seznamu pojišťoven přispívajících na psychoterapeutická sezení. Výši příspěvku si ověřte u své pojišťovny nebo to probereme spolu.</p>
+        <div class="pojistovny-pills">
+          <a class="p-logo" href="#" aria-label="VZP"><img src="./logo_VZP.svg" alt="VZP"/></a>
+          <a class="p-logo" href="#" aria-label="ZPMV"><img src="./zpmv-logo.jpg" alt="ZPMV"/></a>
+          <a class="p-pill" href="#">OZP</a>
+          <a class="p-pill" href="#">ZPŠ</a>
+          <a class="p-pill" href="#">RBP</a>
+          <a class="p-pill" href="#">ČPZ</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+    <!-- FAQ -->
   <section id="faq">
     <div class="section-inner">
     <h2 class="section-heading">Nejčastější øtázky</h2>
@@ -1837,73 +1930,6 @@
         </div>
       </div>
 
-    </div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="cenik">
-    <div class="section-inner">
-    <h2 class="section-heading" style="padding-bottom: 2.5rem;">Ceník</h2>
-
-    <div class="cenik-grid">
-      <div class="cenik-card">
-        <div class="cenik-icon">💬</div>
-        <h3 class="cenik-name">Individuální poradenství</h3>
-        <p class="cenik-duration">50 minut</p>
-        <div class="cenik-price"><span class="price-num">1 500</span><span class="price-unit">Kč</span></div>
-      </div>
-      <div class="cenik-card">
-        <div class="cenik-icon">⚡</div>
-        <h3 class="cenik-name">Krizová intervence</h3>
-        <p class="cenik-duration">50 minut</p>
-        <div class="cenik-price"><span class="price-num">1 700</span><span class="price-unit">Kč</span></div>
-      </div>
-      <div class="cenik-card">
-        <div class="cenik-icon">🤝</div>
-        <h3 class="cenik-name">Párová a rodinná terapie</h3>
-        <p class="cenik-duration">70 minut</p>
-        <div class="cenik-price"><span class="price-num">1 700</span><span class="price-unit">Kč</span></div>
-      </div>
-      <div class="cenik-card">
-        <div class="cenik-icon">🏖</div>
-        <h3 class="cenik-name">Terapeutické pískoviště</h3>
-        <p class="cenik-duration">50 minut</p>
-        <div class="cenik-price"><span class="price-num">1 500</span><span class="price-unit">Kč</span></div>
-      </div>
-      <div class="cenik-card muted">
-        <div class="cenik-icon">🎓</div>
-        <h3 class="cenik-name">Přednášky & workshopy</h3>
-        <p class="cenik-duration">dle rozsahu</p>
-        <div class="cenik-price"><span class="price-num">dle domluvy</span></div>
-      </div>
-    </div>
-
-    <div class="info-grid">
-      <div class="note-box">
-        <span class="note-title">Platba předem</span>
-        <p class="note-highlight">Převodem na účet č. XXX</p>
-        <p class="note-text">Platbu je nutné uhradit nejpozději 48 hodin před rezervovaným termínem. Pokud platba není připsána včas, sezení je stornováno.</p>
-      </div>
-      <div class="note-box">
-        <span class="note-title">Storno podmínky</span>
-        <p class="note-text">Změnu nebo zrušení termínu je možné nejpozději <strong style="font-weight:400;color:var(--text-plum);">48 hodin předem</strong>. Při pozdějším zrušení je nutné uhradit plnou cenu sezení.</p>
-      </div>
-    </div>
-
-    <div class="pojistovny-box">
-      <span class="note-title">Spolupráce s pojišťovnami</span>
-      <div class="pojistovny-top">
-        <p class="pojistovny-text">Jsem členkou České asociace pro psychoterapii — najdete mě na seznamu pojišťoven přispívajících na psychoterapeutická sezení. Výši příspěvku si ověřte u své pojišťovny nebo to probereme spolu.</p>
-        <div class="pojistovny-pills">
-          <a class="p-pill" href="#">VZP</a>
-          <a class="p-pill" href="#">ZPMV</a>
-          <a class="p-pill" href="#">OZP</a>
-          <a class="p-pill" href="#">ZPŠ</a>
-          <a class="p-pill" href="#">RBP</a>
-          <a class="p-pill" href="#">ČPZ</a>
-        </div>
-      </div>
     </div>
     </div>
   </section>
@@ -2034,9 +2060,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <span>psychø — Mgr. Kateřina Fibichová</span>
-      <span>IČO: XXXXXXXX</span>
-      <span>© 2025</span>
+      <span>web<strong>not</strong> 2026<span>
     </div>
   </footer>
 
@@ -2064,6 +2088,9 @@
 
       let t = 0;
 
+      canvas.width = 4;
+      canvas.height = 4;
+
       function lerp(a, b, f) {
         return a + (b - a) * f;
       }
@@ -2089,7 +2116,7 @@
         const h = canvas.offsetHeight;
         canvas.width = w;
         canvas.height = h;
-        t += 0.0011;
+        t += 0.001;
 
         const tl = getColor(t);
         const tr = getColor(t + 0.18);
@@ -2158,7 +2185,6 @@
         '.media-grid .media-card',
         '.cenik-grid .cenik-card',
         '.faq-list',
-        '.info-grid .note-box',
       ];
 
       // Elements to reveal individually (no stagger)
@@ -2188,9 +2214,8 @@
 
       // Add .reveal + data-delay to stagger groups
       staggerGroups.forEach(function (sel) {
-        document.querySelectorAll(sel).forEach(function (el, i) {
+        document.querySelectorAll(sel).forEach(function (el) {
           el.classList.add('reveal');
-          el.setAttribute('data-delay', String(i + 1));
         });
       });
 
